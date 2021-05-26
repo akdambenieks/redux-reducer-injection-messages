@@ -3,6 +3,7 @@ import { combineReducers, createStore, compose } from 'redux';
 const CHANGE_LANGUAGE = 'HOST/CHANGE_LANGUAGE';
 const ENQUEUE_MESSAGE = 'HOST/ENQUEUE_MESSAGE';
 const DEFAULT_LANGUAGE = 'en';
+const INITIAL_COUNT = 0;
 
 const initialState = {
   appName: 'host',
@@ -81,5 +82,13 @@ export const selectors = {
       };
       return acc;
     }, DEFAULT_LANGUAGE);
+  },
+  getCount: (state) => {
+    return state.host.messages.reduce((acc, message) => {
+      if (message.type === 'UPDATE_COUNT') {
+        acc = acc + message.payload
+      };
+      return acc;
+    }, INITIAL_COUNT)
   }
 }

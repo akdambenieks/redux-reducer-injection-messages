@@ -2,6 +2,7 @@ import React, { Suspense, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import LanguageToggle from './components/LanguageToggle';
+import Counter from './components/Counter';
 
 import { store } from './store';
 
@@ -27,6 +28,7 @@ const App = () => {
       <div>
         Welcome to Host App
         <LanguageToggle />
+        <Counter />
         <div>
           <Suspense fallback="Loading...">
             <div>
