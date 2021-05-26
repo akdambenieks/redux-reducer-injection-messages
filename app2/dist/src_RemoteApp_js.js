@@ -19,7 +19,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const remoteAppScope = 'remoteApp';
 const hostAppScope = 'host';
 

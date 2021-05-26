@@ -1,14 +1,13 @@
 import { combineReducers, createStore, compose } from 'redux';
 
-const CHANGE_LANGUAGE = 'HOST/CHANGE_LANGUAGE'
-const TOGGLE_APP2 = 'HOST/TOGGLE_APP2'
-const TOGGLE_APP3 = 'HOST/TOGGLE_APP3'
+const CHANGE_LANGUAGE = 'HOST/CHANGE_LANGUAGE';
+const ENQUEUE_MESSAGE = 'HOST/ENQUEUE_MESSAGE';
+const DEFAULT_LANGUAGE = 'en';
 
 const initialState = {
   appName: 'host',
   language: 'en',
-  displayApp2: false,
-  displayApp3: false
+  messages: []
 };
 
 const hostReducer = (state = initialState, action) => {
@@ -19,18 +18,10 @@ const hostReducer = (state = initialState, action) => {
         language: action.payload,
       };
     }
-    case TOGGLE_APP2: {
-      const currentDisplay = state.displayApp2;
+    case ENQUEUE_MESSAGE: {
       return {
         ...state,
-        displayApp2: !currentDisplay
-      }
-    }
-    case TOGGLE_APP3: {
-      const currentDisplay = state.displayApp3;
-      return {
-        ...state,
-        displayApp3: !currentDisplay
+        messages: [...state.messages, action.payload]
       }
     }
     default:
@@ -58,7 +49,6 @@ export default function configureStore(initialState) {
   store.asyncReducers = {};
 
   store.injectReducer = (key, asyncReducer) => {
-    console.log('key: ', key)
     store.asyncReducers[key] = asyncReducer;
     store.replaceReducer(createReducer(store.asyncReducers));
   };
@@ -75,7 +65,21 @@ function createReducer(asyncReducers) {
 
 export const store = configureStore();
 
+export const actions = {
+  enqueueMessage: (message) => ({
+    type: ENQUEUE_MESSAGE,
+    payload: message
+  })
+}
+
 export const selectors = {
-  getDisplayApp2: () => store.getState().displayApp2,
-  getDisplayApp3: () => store.getState().displayApp3
+  getMessages: (state) => state.host.messages,
+  getLanguage: (state) => {
+    return state.host.messages.reduce((acc, message) => {
+      if (message.type === 'CHANGE_LANGUAGE') {
+        acc = message.payload
+      };
+      return acc;
+    }, DEFAULT_LANGUAGE);
+  }
 }

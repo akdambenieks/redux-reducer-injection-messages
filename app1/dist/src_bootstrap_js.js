@@ -14,7 +14,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./src/store.js");
+/* harmony import */ var _components_LanguageToggle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/LanguageToggle */ "./src/components/LanguageToggle.jsx");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./src/store.js");
+
 
 
 
@@ -38,21 +40,85 @@ const App = () => {
   const [displayApp2, toggleDisplayApp2] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [displayApp3, toggleDisplayApp3] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__.Provider, {
-    store: _store__WEBPACK_IMPORTED_MODULE_3__.store
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Welcome to Host App", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
+    store: _store__WEBPACK_IMPORTED_MODULE_4__.store
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Welcome to Host App", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_LanguageToggle__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: "Loading..."
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: () => toggleDisplayApp2(!displayApp2)
   }, "Show/Hide App2")), displayApp2 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RemoteApp, {
-    store: _store__WEBPACK_IMPORTED_MODULE_3__.store
+    store: _store__WEBPACK_IMPORTED_MODULE_4__.store
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: () => toggleDisplayApp3(!displayApp3)
   }, "Show/Hide App3")), displayApp3 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RemoteApp2, {
-    store: _store__WEBPACK_IMPORTED_MODULE_3__.store
+    store: _store__WEBPACK_IMPORTED_MODULE_4__.store
   })))));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default().render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null), document.getElementById('root'));
+
+/***/ }),
+
+/***/ "./src/components/LanguageToggle.jsx":
+/*!*******************************************!*\
+  !*** ./src/components/LanguageToggle.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store */ "./src/store.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
+
+
+
+
+const {
+  getLanguage
+} = _store__WEBPACK_IMPORTED_MODULE_2__.selectors;
+const {
+  enqueueMessage
+} = _store__WEBPACK_IMPORTED_MODULE_2__.actions;
+
+const LanguageToggle = () => {
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getLanguage(state));
+
+  const dispatchChangeLanguageMessage = e => dispatch(enqueueMessage({
+    type: 'CHANGE_LANGUAGE',
+    payload: e.currentTarget.id
+  }));
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current Language: ", language), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Change Language:"), _constants__WEBPACK_IMPORTED_MODULE_3__.LANGUAGE_OPTIONS.map(option => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: e => dispatchChangeLanguageMessage(e),
+    id: option,
+    key: option,
+    disabled: language === option
+  }, option)));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LanguageToggle);
+
+/***/ }),
+
+/***/ "./src/constants.js":
+/*!**************************!*\
+  !*** ./src/constants.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LANGUAGE_OPTIONS": () => (/* binding */ LANGUAGE_OPTIONS)
+/* harmony export */ });
+const LANGUAGE_OPTIONS = ['en', 'fr'];
 
 /***/ }),
 
@@ -67,19 +133,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ configureStore),
 /* harmony export */   "store": () => (/* binding */ store),
+/* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "selectors": () => (/* binding */ selectors)
 /* harmony export */ });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "webpack/sharing/consume/default/redux/redux");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
 
 const CHANGE_LANGUAGE = 'HOST/CHANGE_LANGUAGE';
-const TOGGLE_APP2 = 'HOST/TOGGLE_APP2';
-const TOGGLE_APP3 = 'HOST/TOGGLE_APP3';
+const ENQUEUE_MESSAGE = 'HOST/ENQUEUE_MESSAGE';
+const DEFAULT_LANGUAGE = 'en';
 const initialState = {
   appName: 'host',
   language: 'en',
-  displayApp2: false,
-  displayApp3: false
+  messages: []
 };
 
 const hostReducer = (state = initialState, action) => {
@@ -91,19 +157,10 @@ const hostReducer = (state = initialState, action) => {
         };
       }
 
-    case TOGGLE_APP2:
+    case ENQUEUE_MESSAGE:
       {
-        const currentDisplay = state.displayApp2;
         return { ...state,
-          displayApp2: !currentDisplay
-        };
-      }
-
-    case TOGGLE_APP3:
-      {
-        const currentDisplay = state.displayApp3;
-        return { ...state,
-          displayApp3: !currentDisplay
+          messages: [...state.messages, action.payload]
         };
       }
 
@@ -127,7 +184,6 @@ function configureStore(initialState) {
   store.asyncReducers = {};
 
   store.injectReducer = (key, asyncReducer) => {
-    console.log('key: ', key);
     store.asyncReducers[key] = asyncReducer;
     store.replaceReducer(createReducer(store.asyncReducers));
   };
@@ -142,9 +198,24 @@ function createReducer(asyncReducers) {
 }
 
 const store = configureStore();
+const actions = {
+  enqueueMessage: message => ({
+    type: ENQUEUE_MESSAGE,
+    payload: message
+  })
+};
 const selectors = {
-  getDisplayApp2: () => store.getState().displayApp2,
-  getDisplayApp3: () => store.getState().displayApp3
+  getMessages: state => state.host.messages,
+  getLanguage: state => {
+    return state.host.messages.reduce((acc, message) => {
+      if (message.type === 'CHANGE_LANGUAGE') {
+        acc = message.payload;
+      }
+
+      ;
+      return acc;
+    }, DEFAULT_LANGUAGE);
+  }
 };
 
 /***/ })

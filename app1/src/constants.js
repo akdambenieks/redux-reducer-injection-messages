@@ -1,0 +1,1 @@
+export const LANGUAGE_OPTIONS = ['en', 'fr'];

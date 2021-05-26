@@ -1,27 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 
-import reducer, { changeAppNameAction, changeHostLanguageAction } from './reducer';
+import reducer, { actions, selectors } from './reducer';
+
+const { getLanguage, getAppName, getLanguageFromMessages } = selectors;
+const { changeAppNameAction } = actions;
 
 const remoteAppScope = 'remoteApp2';
-const hostAppScope = 'host';
 
 const RemoteApp = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state[remoteAppScope]);
-  const hostState = useSelector((state) => state[hostAppScope]);
+  const languageFromHost = useSelector(state => getLanguageFromMessages(state));
+  const language = useSelector(state => getLanguage(state));
+  const appName = useSelector(state => getAppName(state));
   const [remoteAppInput, setRemoteAppInput] = useState('');
-
+  
   return (
     <div style={{ marginTop: '10px' }}>
       <div>RemoteApp2</div>
       <div>
-        RemoteApp2's name from the redux store : {state && state.appName}
+        RemoteApp2's name from the redux store : {appName}
       </div>
 
       <div>
-        HostApp's language from the redux store : {hostState && hostState.language}
+        RemoteApp2's language from the redux store : {language}
+      </div>
+
+      <div>
+        RemoteApp2's language derived from host getMessages : {languageFromHost}
       </div>
 
       <div>
@@ -34,9 +40,6 @@ const RemoteApp = () => {
         />
         <button onClick={() => dispatch(changeAppNameAction(remoteAppInput))}>
           Dispatch RemoteApp new name
-        </button>
-        <button onClick={() => dispatch(changeHostLanguageAction(remoteAppInput))}>
-          Dispatch HostApp change language
         </button>
       </div>
     </div>

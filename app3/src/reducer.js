@@ -1,16 +1,20 @@
 const initialState = {
   appName: 'remoteApp2',
+  language: 'en'
 };
+
+const remoteAppScope = 'remoteApp2';
+const hostAppScope = 'host';
 
 const CHANGE_APP_NAME = 'APP3/CHANGE_APP_NAME';
+const CHANGE_LANGUAGE = 'APP3/CHANGE_LANGUAGE';
 
-const changeAppNameAction = (appName) => {
-  return { type: CHANGE_APP_NAME, payload: appName };
+export const actions = {
+  changeAppNameAction: (appName) => {
+    return { type: CHANGE_APP_NAME, payload: appName };
+  },
 };
 
-const changeHostLanguageAction = (language) => {
-  return { type: 'HOST/CHANGE_LANGUAGE', payload: language}
-};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,9 +24,25 @@ const reducer = (state = initialState, action) => {
         appName: action.payload,
       };
     }
+    case CHANGE_LANGUAGE: {
+      return {...state}
+    }
   }
   return state;
 };
 
-export { changeAppNameAction, changeHostLanguageAction };
+export const selectors = {
+  getAppName: (state) => state[remoteAppScope] ? state[remoteAppScope].appName : initialState.appName,
+  getLanguage: (state) => state[remoteAppScope] ? state[remoteAppScope].language : initialState.language,
+  getMessagesFromHost: (state) => state[hostAppScope].messages,
+  getLanguageFromMessages: (state) => {
+    return state[hostAppScope].messages.reduce((acc, message) => {
+      if (message.type === 'CHANGE_LANGUAGE') {
+        acc = message.payload
+      }
+      return acc
+    }, initialState.language)
+  }
+}
+
 export default reducer;

@@ -19,20 +19,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+const {
+  getLanguage,
+  getAppName,
+  getLanguageFromMessages
+} = _reducer__WEBPACK_IMPORTED_MODULE_2__.selectors;
+const {
+  changeAppNameAction
+} = _reducer__WEBPACK_IMPORTED_MODULE_2__.actions;
 const remoteAppScope = 'remoteApp2';
-const hostAppScope = 'host';
 
 const RemoteApp = () => {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const state = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state[remoteAppScope]);
-  const hostState = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state[hostAppScope]);
+  const languageFromHost = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getLanguageFromMessages(state));
+  const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getLanguage(state));
+  const appName = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getAppName(state));
   const [remoteAppInput, setRemoteAppInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       marginTop: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "RemoteApp2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "RemoteApp2's name from the redux store : ", state && state.appName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "HostApp's language from the redux store : ", hostState && hostState.language), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "RemoteApp2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "RemoteApp2's name from the redux store : ", appName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "RemoteApp2's language from the redux store : ", language), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "RemoteApp2's language derived from host getMessages : ", languageFromHost), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     style: {
       marginRight: '10px'
     },
@@ -41,10 +48,8 @@ const RemoteApp = () => {
       setRemoteAppInput(e.target.value);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: () => dispatch((0,_reducer__WEBPACK_IMPORTED_MODULE_2__.changeAppNameAction)(remoteAppInput))
-  }, "Dispatch RemoteApp new name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: () => dispatch((0,_reducer__WEBPACK_IMPORTED_MODULE_2__.changeHostLanguageAction)(remoteAppInput))
-  }, "Dispatch HostApp change language")));
+    onClick: () => dispatch(changeAppNameAction(remoteAppInput))
+  }, "Dispatch RemoteApp new name")));
 };
 
 const RemoteAppWrapper = props => {
@@ -73,27 +78,25 @@ const RemoteAppWrapper = props => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "changeAppNameAction": () => (/* binding */ changeAppNameAction),
-/* harmony export */   "changeHostLanguageAction": () => (/* binding */ changeHostLanguageAction),
+/* harmony export */   "actions": () => (/* binding */ actions),
+/* harmony export */   "selectors": () => (/* binding */ selectors),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 const initialState = {
-  appName: 'remoteApp2'
+  appName: 'remoteApp2',
+  language: 'en'
 };
+const remoteAppScope = 'remoteApp2';
+const hostAppScope = 'host';
 const CHANGE_APP_NAME = 'APP3/CHANGE_APP_NAME';
-
-const changeAppNameAction = appName => {
-  return {
-    type: CHANGE_APP_NAME,
-    payload: appName
-  };
-};
-
-const changeHostLanguageAction = language => {
-  return {
-    type: 'HOST/CHANGE_LANGUAGE',
-    payload: language
-  };
+const CHANGE_LANGUAGE = 'APP3/CHANGE_LANGUAGE';
+const actions = {
+  changeAppNameAction: appName => {
+    return {
+      type: CHANGE_APP_NAME,
+      payload: appName
+    };
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -104,12 +107,31 @@ const reducer = (state = initialState, action) => {
           appName: action.payload
         };
       }
+
+    case CHANGE_LANGUAGE:
+      {
+        return { ...state
+        };
+      }
   }
 
   return state;
 };
 
+const selectors = {
+  getAppName: state => state[remoteAppScope] ? state[remoteAppScope].appName : initialState.appName,
+  getLanguage: state => state[remoteAppScope] ? state[remoteAppScope].language : initialState.language,
+  getMessagesFromHost: state => state[hostAppScope].messages,
+  getLanguageFromMessages: state => {
+    return state[hostAppScope].messages.reduce((acc, message) => {
+      if (message.type === 'CHANGE_LANGUAGE') {
+        acc = message.payload;
+      }
 
+      return acc;
+    }, initialState.language);
+  }
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);
 
 /***/ })

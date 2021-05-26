@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 
 import reducer, { changeAppNameAction, changeHostLanguageAction } from './reducer';
 

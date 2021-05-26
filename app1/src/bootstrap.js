@@ -1,6 +1,7 @@
 import React, { Suspense, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import LanguageToggle from './components/LanguageToggle';
 
 import { store } from './store';
 
@@ -25,6 +26,7 @@ const App = () => {
     <Provider store={store}>
       <div>
         Welcome to Host App
+        <LanguageToggle />
         <div>
           <Suspense fallback="Loading...">
             <div>
