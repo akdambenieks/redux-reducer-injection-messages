@@ -1,8 +1,8 @@
 const initialState = {
-  appName: 'remoteApp',
+  appName: 'remoteApp2',
 };
 
-const CHANGE_APP_NAME = 'CHANGE_APP_NAME';
+const CHANGE_APP_NAME = 'APP3/CHANGE_APP_NAME';
 
 const changeAppNameAction = (appName) => {
   return { type: CHANGE_APP_NAME, payload: appName };

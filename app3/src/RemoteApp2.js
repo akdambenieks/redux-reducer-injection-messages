@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import reducer, { changeAppNameAction, changeHostLanguageAction } from './reducer';
 
-const remoteAppScope = 'remoteApp';
+const remoteAppScope = 'remoteApp2';
 const hostAppScope = 'host';
 
 const RemoteApp = () => {
@@ -15,9 +15,9 @@ const RemoteApp = () => {
 
   return (
     <div style={{ marginTop: '10px' }}>
-      <div>RemoteApp</div>
+      <div>RemoteApp2</div>
       <div>
-        RemoteApp's name from the redux store : {state && state.appName}
+        RemoteApp2's name from the redux store : {state && state.appName}
       </div>
 
       <div>
@@ -47,7 +47,7 @@ const RemoteAppWrapper = (props) => {
   const { store } = props;
   useEffect(() => {
     store.injectReducer(remoteAppScope, reducer);
-    return () => console.log('Unmounting App2')
+    return () => console.log('Unmounting App3')
   }, []);
 
   return (
