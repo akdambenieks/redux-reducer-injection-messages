@@ -4,7 +4,7 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 import reducer, { actions, selectors } from './reducer';
 
 const { getLanguage, getAppName, getLanguageFromMessages } = selectors;
-const { changeAppNameAction } = actions;
+const { changeAppNameAction, enqueueMessageAction } = actions;
 
 const remoteAppScope = 'remoteApp2';
 
@@ -14,6 +14,7 @@ const RemoteApp = () => {
   const language = useSelector(state => getLanguage(state));
   const appName = useSelector(state => getAppName(state));
   const [remoteAppInput, setRemoteAppInput] = useState('');
+  const [remoteAppIncrementDecrementByValue, setRemoteAppIncrementDecrementByValue] = useState(1);
   
   return (
     <div style={{ marginTop: '10px' }}>
@@ -41,6 +42,36 @@ const RemoteApp = () => {
         <button onClick={() => dispatch(changeAppNameAction(remoteAppInput))}>
           Dispatch RemoteApp new name
         </button>
+        <div>
+          <label htmlFor="increment-decrement-by-value">Increment/Decrement by: </label>
+          <input
+            id="increment-decrement-by-value"
+            style={{ marginRight: '10px' }}
+            value={remoteAppIncrementDecrementByValue}
+            type="number"
+            onChange={(e) => {
+              setRemoteAppIncrementDecrementByValue(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <button onClick={() => dispatch(enqueueMessageAction(
+            {
+              type: 'UPDATE_COUNT',
+              payload: remoteAppIncrementDecrementByValue
+            }
+          ))}>
+            Increment
+          </button>
+          <button onClick={() => dispatch(enqueueMessageAction(
+            {
+              type: 'UPDATE_COUNT',
+              payload: -remoteAppIncrementDecrementByValue
+            }
+          ))}>
+            Decrement
+          </button>
+        </div>
       </div>
     </div>
   );
