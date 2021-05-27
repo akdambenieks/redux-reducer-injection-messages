@@ -25,7 +25,8 @@ const {
   getLanguageFromMessages
 } = _reducer__WEBPACK_IMPORTED_MODULE_2__.selectors;
 const {
-  changeAppNameAction
+  changeAppNameAction,
+  enqueueMessageAction
 } = _reducer__WEBPACK_IMPORTED_MODULE_2__.actions;
 const remoteAppScope = 'remoteApp2';
 
@@ -35,6 +36,7 @@ const RemoteApp = () => {
   const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getLanguage(state));
   const appName = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getAppName(state));
   const [remoteAppInput, setRemoteAppInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [remoteAppIncrementDecrementByValue, setRemoteAppIncrementDecrementByValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       marginTop: '10px'
@@ -49,7 +51,29 @@ const RemoteApp = () => {
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: () => dispatch(changeAppNameAction(remoteAppInput))
-  }, "Dispatch RemoteApp new name")));
+  }, "Dispatch RemoteApp new name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+    htmlFor: "increment-decrement-by-value"
+  }, "Increment/Decrement by: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    id: "increment-decrement-by-value",
+    style: {
+      marginRight: '10px'
+    },
+    value: remoteAppIncrementDecrementByValue,
+    type: "number",
+    onChange: e => {
+      setRemoteAppIncrementDecrementByValue(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: () => dispatch(enqueueMessageAction({
+      type: 'UPDATE_COUNT',
+      payload: remoteAppIncrementDecrementByValue
+    }))
+  }, "Increment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: () => dispatch(enqueueMessageAction({
+      type: 'UPDATE_COUNT',
+      payload: -remoteAppIncrementDecrementByValue
+    }))
+  }, "Decrement"))));
 };
 
 const RemoteAppWrapper = props => {
@@ -90,11 +114,18 @@ const remoteAppScope = 'remoteApp2';
 const hostAppScope = 'host';
 const CHANGE_APP_NAME = 'APP3/CHANGE_APP_NAME';
 const CHANGE_LANGUAGE = 'APP3/CHANGE_LANGUAGE';
+const ENQUEUE_MESSAGE = 'HOST/ENQUEUE_MESSAGE';
 const actions = {
   changeAppNameAction: appName => {
     return {
       type: CHANGE_APP_NAME,
       payload: appName
+    };
+  },
+  enqueueMessageAction: message => {
+    return {
+      type: ENQUEUE_MESSAGE,
+      payload: message
     };
   }
 };

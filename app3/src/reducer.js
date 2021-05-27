@@ -8,11 +8,15 @@ const hostAppScope = 'host';
 
 const CHANGE_APP_NAME = 'APP3/CHANGE_APP_NAME';
 const CHANGE_LANGUAGE = 'APP3/CHANGE_LANGUAGE';
+const ENQUEUE_MESSAGE = 'HOST/ENQUEUE_MESSAGE';
 
 export const actions = {
   changeAppNameAction: (appName) => {
     return { type: CHANGE_APP_NAME, payload: appName };
   },
+  enqueueMessageAction: (message) => {
+    return { type: ENQUEUE_MESSAGE, payload: message };
+  }
 };
 
 

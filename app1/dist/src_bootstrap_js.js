@@ -319,7 +319,7 @@ const selectors = {
   getCount: state => {
     return state.host.messages.reduce((acc, message) => {
       if (message.type === 'UPDATE_COUNT') {
-        acc = acc + message.payload;
+        acc = acc + parseInt(message.payload, 10);
       }
 
       ;
