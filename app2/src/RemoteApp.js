@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 
-import reducer, { changeAppNameAction, changeHostLanguageAction } from './reducer';
-
-const remoteAppScope = 'remoteApp';
-const hostAppScope = 'host';
+import reducer, {
+  changeAppNameAction,
+  changeLanguageAction,
+  enqueMessage,
+  getMessages,
+  remoteAppScope,
+  hostAppScope
+} from './reducer';
 
 const RemoteApp = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state[remoteAppScope]);
   const hostState = useSelector((state) => state[hostAppScope]);
   const [remoteAppInput, setRemoteAppInput] = useState('');
+  const messages = useSelector(getMessages)
+
+  console.log('Messages', messages);
 
   return (
     <div style={{ marginTop: '10px' }}>
@@ -18,9 +25,12 @@ const RemoteApp = () => {
       <div>
         RemoteApp's name from the redux store : {state && state.appName}
       </div>
-
+      <br />
       <div>
         HostApp's language from the redux store : {hostState && hostState.language}
+      </div>
+      <div>
+        You have {messages.length} message(s)
       </div>
 
       <div>
@@ -34,7 +44,7 @@ const RemoteApp = () => {
         <button onClick={() => dispatch(changeAppNameAction(remoteAppInput))}>
           Dispatch RemoteApp new name
         </button>
-        <button onClick={() => dispatch(changeHostLanguageAction(remoteAppInput))}>
+        <button onClick={() => dispatch(enqueMessage(changeLanguageAction(remoteAppInput)))}>
           Dispatch HostApp change language
         </button>
       </div>

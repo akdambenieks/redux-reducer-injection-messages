@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectors, actions } from '../store'
+import { selectors, actions, CHANGE_LANGUAGE } from '../store'
 import { LANGUAGE_OPTIONS } from '../constants';
 
 const { getLanguage } = selectors;
@@ -9,7 +9,7 @@ const { enqueueMessage } = actions;
 const LanguageToggle = () => {
   const dispatch = useDispatch();
   const language = useSelector(state => getLanguage(state));
-  const dispatchChangeLanguageMessage = e => dispatch(enqueueMessage({ type: 'CHANGE_LANGUAGE', payload: e.currentTarget.id }))
+  const dispatchChangeLanguageMessage = e => dispatch(enqueueMessage({ type: CHANGE_LANGUAGE, payload: e.currentTarget.id }))
 
   return (
     <>

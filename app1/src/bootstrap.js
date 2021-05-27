@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import LanguageToggle from './components/LanguageToggle';
 import Counter from './components/Counter';
+import Messages from './components/Messages';
 
-import { store } from './store';
+import { store, selectors } from './store';
+const { getMessages } = selectors;
 
 const dynamicFederation = async (scope, module) => {
   const container = window[scope]; // or get the container somewhere else
@@ -29,6 +31,7 @@ const App = () => {
         Welcome to Host App
         <LanguageToggle />
         <Counter />
+        <Messages />
         <div>
           <Suspense fallback="Loading...">
             <div>

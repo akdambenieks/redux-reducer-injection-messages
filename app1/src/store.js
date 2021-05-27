@@ -1,7 +1,7 @@
 import { combineReducers, createStore, compose } from 'redux';
 
-const CHANGE_LANGUAGE = 'HOST/CHANGE_LANGUAGE';
-const ENQUEUE_MESSAGE = 'HOST/ENQUEUE_MESSAGE';
+export const CHANGE_LANGUAGE = 'GLOBAL/CHANGE_LANGUAGE';
+export const ENQUEUE_MESSAGE = 'GLOBAL/ENQUEUE_MESSAGE';
 const DEFAULT_LANGUAGE = 'en';
 const INITIAL_COUNT = 0;
 
@@ -20,14 +20,17 @@ const hostReducer = (state = initialState, action) => {
       };
     }
     case ENQUEUE_MESSAGE: {
+      console.log('Action in host',action)
       return {
         ...state,
         messages: [...state.messages, action.payload]
       }
+      console.log('Result', result)
     }
     default:
       return state;
   }
+  return result
 };
 
 const staticReducers = {
