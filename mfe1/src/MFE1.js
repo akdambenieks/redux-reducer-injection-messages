@@ -53,7 +53,9 @@ const RemoteApp = () => {
 };
 
 const RemoteAppWrapper = (props) => {
+  console.log(Object.keys(props));
   const { store } = props;
+  console.log(store);
   useEffect(() => {
     store.injectReducer(remoteAppScope, reducer);
     return () => console.log('Unmounting App2')

@@ -7,7 +7,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__.e(/*! import() */ "src_bootstrap_js").then(__webpack_require__.bind(__webpack_require__, /*! ./bootstrap */ "./src/bootstrap.js"));
+Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_history_esm_history_js"), __webpack_require__.e("src_bootstrap_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./bootstrap */ "./src/bootstrap.js"));
 
 /***/ })
 
@@ -88,6 +88,18 @@ __webpack_require__.e(/*! import() */ "src_bootstrap_js").then(__webpack_require
 /******/ 			// return url for filenames based on template
 /******/ 			return "" + chunkId + ".js";
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -192,7 +204,8 @@ __webpack_require__.e(/*! import() */ "src_bootstrap_js").then(__webpack_require
 /******/ 			switch(name) {
 /******/ 				case "default": {
 /******/ 					register("react-dom", "16.14.0", () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-dom_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react"), __webpack_require__.e("node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_320c-_a15c0")]).then(() => (() => (__webpack_require__(/*! ./node_modules/react-dom/index.js */ "./node_modules/react-dom/index.js"))))));
-/******/ 					register("react-redux", "7.2.4", () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-redux_es_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react-dom_react-dom-webpack_sharing_consume_default_react_react")]).then(() => (() => (__webpack_require__(/*! ./node_modules/react-redux/es/index.js */ "./node_modules/react-redux/es/index.js"))))));
+/******/ 					register("react-redux", "7.2.4", () => (Promise.all([__webpack_require__.e("vendors-node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js-node_modules_h-0e596b"), __webpack_require__.e("vendors-node_modules_react-redux_es_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react-dom_react-dom-webpack_sharing_consume_default_react_react"), __webpack_require__.e("node_modules_babel_runtime_helpers_esm_extends_js")]).then(() => (() => (__webpack_require__(/*! ./node_modules/react-redux/es/index.js */ "./node_modules/react-redux/es/index.js"))))));
+/******/ 					register("react-router-dom", "5.2.0", () => (Promise.all([__webpack_require__.e("vendors-node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js-node_modules_h-0e596b"), __webpack_require__.e("vendors-node_modules_react-router-dom_esm_react-router-dom_js"), __webpack_require__.e("vendors-node_modules_history_esm_history_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react-webpack_sharing_consume_default_react_react")]).then(() => (() => (__webpack_require__(/*! ./node_modules/react-router-dom/esm/react-router-dom.js */ "./node_modules/react-router-dom/esm/react-router-dom.js"))))));
 /******/ 					register("react", "16.14.0", () => (Promise.all([__webpack_require__.e("vendors-node_modules_react_index_js"), __webpack_require__.e("node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_320c-_a15c1")]).then(() => (() => (__webpack_require__(/*! ./node_modules/react/index.js */ "./node_modules/react/index.js"))))));
 /******/ 					register("redux", "4.1.0", () => (__webpack_require__.e("vendors-node_modules_redux_es_redux_js").then(() => (() => (__webpack_require__(/*! ./node_modules/redux/es/redux.js */ "./node_modules/redux/es/redux.js"))))));
 /******/ 				}
@@ -333,11 +346,14 @@ __webpack_require__.e(/*! import() */ "src_bootstrap_js").then(__webpack_require
 /******/ 		var moduleToHandlerMapping = {
 /******/ 			"webpack/sharing/consume/default/react/react?2849": () => (loadSingletonVersionCheckFallback("default", "react", [1,16,13,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react_index_js"), __webpack_require__.e("node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_320c-_a15c1")]).then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js"))))))),
 /******/ 			"webpack/sharing/consume/default/react-dom/react-dom?2b58": () => (loadSingletonVersionCheckFallback("default", "react-dom", [1,16,13,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-dom_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react"), __webpack_require__.e("node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_320c-_a15c0")]).then(() => (() => (__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"))))))),
-/******/ 			"webpack/sharing/consume/default/react-redux/react-redux": () => (loadStrictVersionCheckFallback("default", "react-redux", [1,7,2,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-redux_es_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react-dom_react-dom-webpack_sharing_consume_default_react_react")]).then(() => (() => (__webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js"))))))),
+/******/ 			"webpack/sharing/consume/default/react-redux/react-redux": () => (loadStrictVersionCheckFallback("default", "react-redux", [1,7,2,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js-node_modules_h-0e596b"), __webpack_require__.e("vendors-node_modules_react-redux_es_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react-dom_react-dom-webpack_sharing_consume_default_react_react")]).then(() => (() => (__webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js"))))))),
+/******/ 			"webpack/sharing/consume/default/react-router-dom/react-router-dom": () => (loadStrictVersionCheckFallback("default", "react-router-dom", [1,5,1,2], () => (Promise.all([__webpack_require__.e("vendors-node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js-node_modules_h-0e596b"), __webpack_require__.e("vendors-node_modules_react-router-dom_esm_react-router-dom_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react-webpack_sharing_consume_default_react_react")]).then(() => (() => (__webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js"))))))),
 /******/ 			"webpack/sharing/consume/default/redux/redux": () => (loadStrictVersionCheckFallback("default", "redux", [1,4,0,5], () => (__webpack_require__.e("vendors-node_modules_redux_es_redux_js").then(() => (() => (__webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js"))))))),
 /******/ 			"webpack/sharing/consume/default/react/react?76b1": () => (loadSingletonVersionCheckFallback("default", "react", [1,16,14,0], () => (__webpack_require__.e("vendors-node_modules_react_index_js").then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js"))))))),
 /******/ 			"webpack/sharing/consume/default/react/react?f855": () => (loadSingletonVersionCheckFallback("default", "react", [,[1,17],[1,16,8,3],1], () => (__webpack_require__.e("vendors-node_modules_react_index_js").then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js"))))))),
-/******/ 			"webpack/sharing/consume/default/react-dom/react-dom?e4e4": () => (loadSingletonVersionCheckFallback("default", "react-dom", [1,16,14,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-dom_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react")]).then(() => (() => (__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js")))))))
+/******/ 			"webpack/sharing/consume/default/react-dom/react-dom?e4e4": () => (loadSingletonVersionCheckFallback("default", "react-dom", [1,16,14,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-dom_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react")]).then(() => (() => (__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"))))))),
+/******/ 			"webpack/sharing/consume/default/react/react?15a2": () => (loadSingletonVersionCheckFallback("default", "react", [0,15], () => (__webpack_require__.e("vendors-node_modules_react_index_js").then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js"))))))),
+/******/ 			"webpack/sharing/consume/default/react/react?aa1c": () => (loadSingletonVersionCheckFallback("default", "react", [,[1,17,0,0],[1,16,0,0],[1,15,0,0],[2,0,14,0],1,1,1], () => (__webpack_require__.e("vendors-node_modules_react_index_js").then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js")))))))
 /******/ 		};
 /******/ 		// no consumes in initial chunks
 /******/ 		var chunkMapping = {
@@ -345,6 +361,7 @@ __webpack_require__.e(/*! import() */ "src_bootstrap_js").then(__webpack_require
 /******/ 				"webpack/sharing/consume/default/react/react?2849",
 /******/ 				"webpack/sharing/consume/default/react-dom/react-dom?2b58",
 /******/ 				"webpack/sharing/consume/default/react-redux/react-redux",
+/******/ 				"webpack/sharing/consume/default/react-router-dom/react-router-dom",
 /******/ 				"webpack/sharing/consume/default/redux/redux"
 /******/ 			],
 /******/ 			"webpack_sharing_consume_default_react_react": [
@@ -353,6 +370,10 @@ __webpack_require__.e(/*! import() */ "src_bootstrap_js").then(__webpack_require
 /******/ 			"webpack_sharing_consume_default_react-dom_react-dom-webpack_sharing_consume_default_react_react": [
 /******/ 				"webpack/sharing/consume/default/react/react?f855",
 /******/ 				"webpack/sharing/consume/default/react-dom/react-dom?e4e4"
+/******/ 			],
+/******/ 			"webpack_sharing_consume_default_react_react-webpack_sharing_consume_default_react_react": [
+/******/ 				"webpack/sharing/consume/default/react/react?15a2",
+/******/ 				"webpack/sharing/consume/default/react/react?aa1c"
 /******/ 			]
 /******/ 		};
 /******/ 		__webpack_require__.f.consumes = (chunkId, promises) => {
@@ -404,7 +425,7 @@ __webpack_require__.e(/*! import() */ "src_bootstrap_js").then(__webpack_require
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(!/^webpack_sharing_consume_default_react(|\-dom_react\-dom\-webpack_sharing_consume_default_react)_react$/.test(chunkId)) {
+/******/ 						if(!/^webpack_sharing_consume_default_react(_react(|\-webpack_sharing_consume_default_react_react)|\-dom_react\-dom\-webpack_sharing_consume_default_react_react)$/.test(chunkId)) {
 /******/ 							// setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);

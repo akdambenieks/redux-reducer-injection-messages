@@ -47,9 +47,11 @@ const RemoteApp = () => {
 };
 
 const RemoteAppWrapper = props => {
+  console.log(Object.keys(props));
   const {
     store
   } = props;
+  console.log(store);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     store.injectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.remoteAppScope, _reducer__WEBPACK_IMPORTED_MODULE_2__.default);
     return () => console.log('Unmounting App2');
