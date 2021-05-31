@@ -38,7 +38,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'host',
       library: { type: 'var', name: 'host' },
-      filename: 'remoteEntry.js',
+      filename: 'host.js',
+      exposes: {
+        './Counter': './src/components/Counter/index',
+      },
       shared: {
         ...deps,
         react: {
@@ -46,6 +49,9 @@ module.exports = {
         },
         'react-dom': {
           singleton: true,
+        },
+        'styled-components': {
+          singleton: true
         },
       },
     }),

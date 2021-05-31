@@ -1,36 +1,32 @@
 import { combineReducers, createStore, compose } from 'redux';
 
-export const CHANGE_LANGUAGE = 'GLOBAL/CHANGE_LANGUAGE';
-export const ENQUEUE_MESSAGE = 'GLOBAL/ENQUEUE_MESSAGE';
-const DEFAULT_LANGUAGE = 'en';
-const INITIAL_COUNT = 0;
+export const SELECT_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
+export const UPDATE_COUNT = 'GLOBAL/UPDATE_COUNT';
+
+const hostScope = 'host';
 
 const initialState = {
-  appName: 'host',
   language: 'en',
-  messages: []
+  count: 0,
 };
 
 const hostReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_LANGUAGE: {
+    case SELECT_LANGUAGE: {
       return {
         ...state,
         language: action.payload,
       };
     }
-    case ENQUEUE_MESSAGE: {
-      console.log('Action in host',action)
+    case UPDATE_COUNT: {
       return {
         ...state,
-        messages: [...state.messages, action.payload]
+        count: state.count + action.payload
       }
-      console.log('Result', result)
     }
     default:
       return state;
   }
-  return result
 };
 
 const staticReducers = {
@@ -70,28 +66,17 @@ function createReducer(asyncReducers) {
 export const store = configureStore();
 
 export const actions = {
-  enqueueMessage: (message) => ({
-    type: ENQUEUE_MESSAGE,
-    payload: message
+  selectLanguage: (language) => ({
+    type: SELECT_LANGUAGE,
+    payload: language
+  }),
+  updateCount: (byValue) => ({
+    type: UPDATE_COUNT,
+    payload: byValue
   })
 }
 
 export const selectors = {
-  getMessages: (state) => state.host.messages,
-  getLanguage: (state) => {
-    return state.host.messages.reduce((acc, message) => {
-      if (message.type === 'CHANGE_LANGUAGE') {
-        acc = message.payload
-      };
-      return acc;
-    }, DEFAULT_LANGUAGE);
-  },
-  getCount: (state) => {
-    return state.host.messages.reduce((acc, message) => {
-      if (message.type === 'UPDATE_COUNT') {
-        acc = acc + parseInt(message.payload, 10)
-      };
-      return acc;
-    }, INITIAL_COUNT)
-  }
+  getLanguage: (state) => state[hostScope].language,
+  getCount: (state) => state[hostScope].count
 }

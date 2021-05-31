@@ -1,4 +1,4 @@
-(self["webpackChunk_redux_reducer_injection_host"] = self["webpackChunk_redux_reducer_injection_host"] || []).push([["src_bootstrap_js"],{
+(self["webpackChunk_redux_reducer_injection_host"] = self["webpackChunk_redux_reducer_injection_host"] || []).push([["src_bootstrap_js-webpack_sharing_consume_default_react_react"],{
 
 /***/ "./src/bootstrap.js":
 /*!**************************!*\
@@ -57,25 +57,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled */ "./src/components/Counter/styled.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store */ "./src/store.js");
+/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styled */ "./src/components/Counter/styled.jsx");
 
 
+
+
+const {
+  getCount
+} = _store__WEBPACK_IMPORTED_MODULE_2__.selectors;
+const {
+  updateCount
+} = _store__WEBPACK_IMPORTED_MODULE_2__.actions;
 
 const Counter = ({
-  title,
-  count,
-  onIncrement,
-  onDecrement,
-  themeColor
+  title
 }) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterTitle, {
-    themeColor: themeColor
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
-    onClick: () => onIncrement(),
-    themeColor: themeColor
-  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterCount, null, count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
-    onClick: () => onDecrement(),
-    themeColor: themeColor
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  const count = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getCount(state));
+
+  const dispatchIncrementCount = () => dispatch(updateCount(1));
+
+  const dispatchDecrementCount = () => dispatch(updateCount(-1));
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.CounterWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.CounterTitle, null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.CounterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.CounterButton, {
+    onClick: () => dispatchIncrementCount()
+  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.CounterCount, null, count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.CounterButton, {
+    onClick: () => dispatchDecrementCount()
   }, "-")));
 };
 
@@ -98,48 +108,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CounterTitle": () => (/* binding */ CounterTitle),
 /* harmony export */   "CounterWrapper": () => (/* binding */ CounterWrapper)
 /* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 
-const CounterButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().button)`
+const CounterButton = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.button`
   font-size: 32px;
   padding: 4px 16px;
   background-color: white;
   text-decoration: none;
   font-weight: 500;
-  color: ${({
-  themeColor
-}) => themeColor};
+  color: blue;
   border: solid 1px gainsboro;
   border-radius: 8px;
 `;
-const CounterContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+const CounterContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: start;
   padding: 16px 0px;
 `;
-const CounterCount = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+const CounterCount = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div`
   margin: 0px 16px;
   font-size: 48px;
   min-width: 80px;
   text-align: center;
 `;
-const CounterTitle = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+const CounterTitle = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div`
   display: inline;
   font-size: 24px;
-  color: ${({
-  themeColor
-}) => themeColor};
+  color: blue;
 `;
-const CounterWrapper = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+const CounterWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: middle;
   font-family: Arial, Helvetica, sans-serif !important;
-  margin-bottom: 48px;
 `;
 
 /***/ }),
@@ -184,10 +188,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -269,10 +272,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "StyledButton": () => (/* binding */ StyledButton),
 /* harmony export */   "SelectorContainer": () => (/* binding */ SelectorContainer)
 /* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 
-const StyledButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().button)`
+const StyledButton = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.button`
   font-size: 24px;
   margin-left: 16px;
   padding: 4px 8px;
@@ -289,7 +291,7 @@ const StyledButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().b
     border: solid 2px blue;
   };
 `;
-const SelectorContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+const SelectorContainer = styled_components__WEBPACK_IMPORTED_MODULE_0__.default.div`
   display: flex;
 `;
 
@@ -341,13 +343,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "StyledLink": () => (/* binding */ StyledLink),
 /* harmony export */   "NavigationContainer": () => (/* binding */ NavigationContainer)
 /* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "webpack/sharing/consume/default/react-router-dom/react-router-dom");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_router_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "webpack/sharing/consume/default/react-router-dom/react-router-dom");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_router_dom__WEBPACK_IMPORTED_MODULE_0__);
 
 
-const StyledLink = styled_components__WEBPACK_IMPORTED_MODULE_0___default()(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.NavLink)`
+const StyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.default)(react_router_dom__WEBPACK_IMPORTED_MODULE_0__.NavLink)`
   margin-right: 16px;
   padding: 8px 16px;
   background-color: white;
@@ -361,7 +362,7 @@ const StyledLink = styled_components__WEBPACK_IMPORTED_MODULE_0___default()(reac
     color: white;
   };
 `;
-const NavigationContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+const NavigationContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div`
   display: flex;
   align-items: center;
   justify-content: start;
@@ -385,10 +386,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store */ "./src/store.js");
-/* harmony import */ var _components_Counter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Counter */ "./src/components/Counter/index.jsx");
-/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styled */ "./src/pages/Host/styled.jsx");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./constants */ "./src/pages/Host/constants.js");
+/* harmony import */ var _components_Counter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Counter */ "./src/components/Counter/index.jsx");
+/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styled */ "./src/pages/Host/styled.jsx");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./src/pages/Host/constants.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store */ "./src/store.js");
 
 
 
@@ -396,27 +397,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const {
-  getLanguage,
-  getCount
-} = _store__WEBPACK_IMPORTED_MODULE_2__.selectors;
-const {
-  updateCount
-} = _store__WEBPACK_IMPORTED_MODULE_2__.actions;
+  getLanguage
+} = _store__WEBPACK_IMPORTED_MODULE_5__.selectors;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
-  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getLanguage);
-  const count = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getCount);
-
-  const onIncrement = () => dispatch(updateCount(1));
-
-  const onDecrement = () => dispatch(updateCount(-1));
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_4__.default, null, _constants__WEBPACK_IMPORTED_MODULE_5__.default[language]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter__WEBPACK_IMPORTED_MODULE_3__.default, {
-    title: "Host Counter",
-    count: count,
-    onIncrement: onIncrement,
-    onDecrement: onDecrement,
-    themeColor: "blue"
+  const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getLanguage(state));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants__WEBPACK_IMPORTED_MODULE_4__.default[language]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter__WEBPACK_IMPORTED_MODULE_2__.default, {
+    title: "Host Counter"
   }));
 });
 
@@ -468,10 +454,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((styled_components__WEBPACK_IMPORTED_MODULE_0___default().h1)`
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (styled_components__WEBPACK_IMPORTED_MODULE_0__.default.h1`
   font-size: 48px;
   font-weight: 100;
   font-family: Arial, Helvetica, sans-serif !important;
@@ -722,4 +707,4 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);
-//# sourceMappingURL=src_bootstrap_js.js.map
+//# sourceMappingURL=src_bootstrap_js-webpack_sharing_consume_default_react_react.js.map

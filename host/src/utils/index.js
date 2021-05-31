@@ -1,5 +1,3 @@
-import { default as dynamicFederation } from './dynamicFederation';
+import dynamicFederation from './dynamicFederation';
 
-export default {
-  dynamicFederation
-}
+export default dynamicFederation;
