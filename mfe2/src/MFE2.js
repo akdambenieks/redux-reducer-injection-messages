@@ -46,9 +46,9 @@ const MFE2Wrapper = (/*props*/) => {
   }, []);
 
   return (
-    <Provider store={store || {}}>
+    // <Provider store={store || {}}>
       <MFE2 />
-    </Provider>
+    // </Provider>
   );
 };
 

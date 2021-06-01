@@ -15,10 +15,23 @@ Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_history_
 /*!*****************************************************!*\
   !*** external "mfe1@http://localhost:3002/mfe1.js" ***!
   \*****************************************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-module.exports = mfe1@http://localhost:3002/mfe1.js;
+var __webpack_error__ = new Error();
+module.exports = new Promise((resolve, reject) => {
+	if(typeof mfe1 !== "undefined") return resolve();
+	__webpack_require__.l("http://localhost:3002/mfe1.js", (event) => {
+		if(typeof mfe1 !== "undefined") return resolve();
+		var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+		var realSrc = event && event.target && event.target.src;
+		__webpack_error__.message = 'Loading script failed.\n(' + errorType + ': ' + realSrc + ')';
+		__webpack_error__.name = 'ScriptExternalLoadError';
+		__webpack_error__.type = errorType;
+		__webpack_error__.request = realSrc;
+		reject(__webpack_error__);
+	}, "mfe1");
+}).then(() => (mfe1));
 
 /***/ }),
 
@@ -26,10 +39,23 @@ module.exports = mfe1@http://localhost:3002/mfe1.js;
 /*!*****************************************************!*\
   !*** external "mfe2@http://localhost:3003/mfe2.js" ***!
   \*****************************************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-module.exports = mfe2@http://localhost:3003/mfe2.js;
+var __webpack_error__ = new Error();
+module.exports = new Promise((resolve, reject) => {
+	if(typeof mfe2 !== "undefined") return resolve();
+	__webpack_require__.l("http://localhost:3003/mfe2.js", (event) => {
+		if(typeof mfe2 !== "undefined") return resolve();
+		var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+		var realSrc = event && event.target && event.target.src;
+		__webpack_error__.message = 'Loading script failed.\n(' + errorType + ': ' + realSrc + ')';
+		__webpack_error__.name = 'ScriptExternalLoadError';
+		__webpack_error__.type = errorType;
+		__webpack_error__.request = realSrc;
+		reject(__webpack_error__);
+	}, "mfe2");
+}).then(() => (mfe2));
 
 /***/ })
 

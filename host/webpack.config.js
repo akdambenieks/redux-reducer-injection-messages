@@ -37,7 +37,7 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: 'host',
-      library: { type: 'var', name: 'host' },
+      // library: { type: 'var', name: 'host' },
       filename: 'host.js',
       exposes: {
         './Counter': './src/components/Counter/index',

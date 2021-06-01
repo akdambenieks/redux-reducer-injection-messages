@@ -32,6 +32,7 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: 'mfe2',
+      // library: { type: "var", name: "mfe2" },
       filename: 'mfe2.js',
       exposes: {
         './MFE2': './src/MFE2',

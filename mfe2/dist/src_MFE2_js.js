@@ -90,9 +90,12 @@ const MFE2Wrapper = () =>
       console.log('Unmounting MFE2'); // store.ejectReducer(mfeScope);
     };
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
-    store: store || {}
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MFE2, null));
+  return (
+    /*#__PURE__*/
+    // <Provider store={store || {}}>
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MFE2, null) // </Provider>
+
+  );
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MFE2Wrapper);
