@@ -38,14 +38,15 @@ const reducer = (state = initialState, action) => {
 export const selectors = {
   getAppName: (state) => state[mfeScope] ? state[mfeScope].appName : initialState.appName,
   getLanguage: (state) => state[mfeScope] ? state[mfeScope].language : initialState.language,
-  getMessagesFromHost: (state) => state[hostAppScope].messages,
   getLanguageFromMessages: (state) => {
-    return state[hostAppScope].messages.reduce((acc, message) => {
-      if (message.type === 'CHANGE_LANGUAGE') {
-        acc = message.payload
-      }
-      return acc
-    }, initialState.language)
+    if (state[hostAppScope] && state[hostAppScope].messages) {
+      return state[hostAppScope].messages.reduce((acc, message) => {
+        if (message.type === 'CHANGE_LANGUAGE') {
+          acc = message.payload
+        }
+        return acc
+      }, initialState.language)
+    }
   }
 }
 
