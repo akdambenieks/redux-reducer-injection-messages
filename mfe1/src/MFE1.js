@@ -1,71 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
-
 import reducer, {
-  changeAppNameAction,
-  changeLanguageAction,
-  enqueMessage,
-  getMessages,
-  remoteAppScope,
-  hostAppScope
+  mfeScope,
+  selectors,
+  actions
 } from './reducer';
+import StyledTitle from './styled.jsx';
+import GREETING from './constants.js';
+import Counter from 'host/Counter';
 
-const RemoteApp = () => {
+const { getCount, getGlobalCount, getGlobalLanguage } = selectors;
+const { updateCount, updateGlobalCount } = actions;
+
+const MFE1 = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state[remoteAppScope]);
-  const hostState = useSelector((state) => state[hostAppScope]);
-  const [remoteAppInput, setRemoteAppInput] = useState('');
-  const messages = useSelector(getMessages)
+  const language = useSelector((state) => getGlobalLanguage(state));
+  const count = useSelector((state) => getCount(state));
+  const globalCount = useSelector(getGlobalCount);
 
-  console.log('Messages', messages);
+  const onIncrement = () => dispatch(updateCount(1));
+  const onDecrement = () =>  dispatch(updateCount(-1));
+  const onGlobalIncrement = () => dispatch(updateGlobalCount(1));
+  const onGlobalDecrement = () =>  dispatch(updateGlobalCount(-1));
 
   return (
     <div style={{ marginTop: '10px' }}>
-      <div>RemoteApp</div>
-      <div>
-        RemoteApp's name from the redux store : {state && state.appName}
-      </div>
-      <br />
-      <div>
-        HostApp's language from the redux store : {hostState && hostState.language}
-      </div>
-      <div>
-        You have {messages.length} message(s)
-      </div>
+      <StyledTitle>{GREETING[language]}</StyledTitle>
+      <Counter title="MFE1 Counter" count={count} onIncrement={onIncrement} onDecrement={onDecrement} themeColor="green"/>
+      <Counter title="Host Counter from MFE1" count={globalCount} onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue"/>
 
-      <div>
-        <input
-          style={{ marginRight: '10px' }}
-          type="text"
-          onChange={(e) => {
-            setRemoteAppInput(e.target.value);
-          }}
-        />
-        <button onClick={() => dispatch(changeAppNameAction(remoteAppInput))}>
-          Dispatch RemoteApp new name
-        </button>
-        <button onClick={() => dispatch(enqueMessage(changeLanguageAction(remoteAppInput)))}>
-          Dispatch HostApp change language
-        </button>
-      </div>
     </div>
   );
 };
 
-const RemoteAppWrapper = (props) => {
-  console.log(Object.keys(props));
+const MFE1Wrapper = (props) => {
   const { store } = props;
-  console.log(store);
   useEffect(() => {
-    store.injectReducer(remoteAppScope, reducer);
-    return () => console.log('Unmounting App2')
+    store.injectReducer(mfeScope, reducer);
+    return () => console.log('Unmounting MFE1')
   }, []);
 
   return (
     <Provider store={store || {}}>
-      <RemoteApp />
+      <MFE1 />
     </Provider>
   );
 };
 
-export default RemoteAppWrapper;
+export default MFE1Wrapper;

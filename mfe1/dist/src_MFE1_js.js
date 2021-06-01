@@ -16,52 +16,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reducer */ "./src/reducer.js");
+/* harmony import */ var _styled_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styled.jsx */ "./src/styled.jsx");
+/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants.js */ "./src/constants.js");
+/* harmony import */ var host_Counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! host/Counter */ "webpack/container/remote/host/Counter");
+/* harmony import */ var host_Counter__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(host_Counter__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
-const RemoteApp = () => {
+
+
+const {
+  getCount,
+  getGlobalCount,
+  getGlobalLanguage
+} = _reducer__WEBPACK_IMPORTED_MODULE_2__.selectors;
+const {
+  updateCount,
+  updateGlobalCount
+} = _reducer__WEBPACK_IMPORTED_MODULE_2__.actions;
+
+const MFE1 = () => {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const state = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state[_reducer__WEBPACK_IMPORTED_MODULE_2__.remoteAppScope]);
-  const hostState = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => state[_reducer__WEBPACK_IMPORTED_MODULE_2__.hostAppScope]);
-  const [remoteAppInput, setRemoteAppInput] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const messages = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(_reducer__WEBPACK_IMPORTED_MODULE_2__.getMessages);
-  console.log('Messages', messages);
+  const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getGlobalLanguage(state));
+  const count = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getCount(state));
+  const globalCount = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getGlobalCount);
+
+  const onIncrement = () => dispatch(updateCount(1));
+
+  const onDecrement = () => dispatch(updateCount(-1));
+
+  const onGlobalIncrement = () => dispatch(updateGlobalCount(1));
+
+  const onGlobalDecrement = () => dispatch(updateGlobalCount(-1));
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       marginTop: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "RemoteApp"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "RemoteApp's name from the redux store : ", state && state.appName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "HostApp's language from the redux store : ", hostState && hostState.language), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "You have ", messages.length, " message(s)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-    style: {
-      marginRight: '10px'
-    },
-    type: "text",
-    onChange: e => {
-      setRemoteAppInput(e.target.value);
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: () => dispatch((0,_reducer__WEBPACK_IMPORTED_MODULE_2__.changeAppNameAction)(remoteAppInput))
-  }, "Dispatch RemoteApp new name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: () => dispatch((0,_reducer__WEBPACK_IMPORTED_MODULE_2__.enqueMessage)((0,_reducer__WEBPACK_IMPORTED_MODULE_2__.changeLanguageAction)(remoteAppInput)))
-  }, "Dispatch HostApp change language")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants_js__WEBPACK_IMPORTED_MODULE_4__.default[language]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((host_Counter__WEBPACK_IMPORTED_MODULE_5___default()), {
+    title: "MFE1 Counter",
+    count: count,
+    onIncrement: onIncrement,
+    onDecrement: onDecrement,
+    themeColor: "green"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((host_Counter__WEBPACK_IMPORTED_MODULE_5___default()), {
+    title: "Host Counter from MFE1",
+    count: globalCount,
+    onIncrement: onGlobalIncrement,
+    onDecrement: onGlobalDecrement,
+    themeColor: "blue"
+  }));
 };
 
-const RemoteAppWrapper = props => {
-  console.log(Object.keys(props));
+const MFE1Wrapper = props => {
   const {
     store
   } = props;
-  console.log(store);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    store.injectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.remoteAppScope, _reducer__WEBPACK_IMPORTED_MODULE_2__.default);
-    return () => console.log('Unmounting App2');
+    store.injectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.mfeScope, _reducer__WEBPACK_IMPORTED_MODULE_2__.default);
+    return () => console.log('Unmounting MFE1');
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
     store: store || {}
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RemoteApp, null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MFE1, null));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RemoteAppWrapper);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MFE1Wrapper);
+
+/***/ }),
+
+/***/ "./src/constants.js":
+/*!**************************!*\
+  !*** ./src/constants.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  en: 'Welcome to MFE1!',
+  fr: 'Bienvenue a MFE1!'
+});
 
 /***/ }),
 
@@ -74,80 +113,74 @@ const RemoteAppWrapper = props => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "changeAppNameAction": () => (/* binding */ changeAppNameAction),
-/* harmony export */   "changeLanguageAction": () => (/* binding */ changeLanguageAction),
-/* harmony export */   "enqueMessage": () => (/* binding */ enqueMessage),
-/* harmony export */   "getMessages": () => (/* binding */ getMessages),
-/* harmony export */   "remoteAppScope": () => (/* binding */ remoteAppScope),
-/* harmony export */   "hostAppScope": () => (/* binding */ hostAppScope),
+/* harmony export */   "mfeScope": () => (/* binding */ mfeScope),
+/* harmony export */   "selectors": () => (/* binding */ selectors),
+/* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+const UPDATE_COUNT = 'MFE1/UPDATE_COUNT';
+const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
+const hostScope = 'host';
+const mfeScope = 'mfe1';
 const initialState = {
-  appName: 'mfe1',
+  count: 0
+};
+const globalDefault = {
   language: 'en',
-  messages: []
-};
-const CHANGE_APP_NAME = 'CHANGE_APP_NAME';
-const ENQUEUE_MESSAGE = 'GLOBAL/ENQUEUE_MESSAGE';
-const CHANGE_LANGUAGE = 'GLOBAL/CHANGE_LANGUAGE';
-
-const changeAppNameAction = appName => {
-  return {
-    type: CHANGE_APP_NAME,
-    payload: appName
-  };
-};
-
-const enqueMessage = message => {
-  return {
-    type: ENQUEUE_MESSAGE,
-    payload: message
-  };
-};
-
-const changeLanguageAction = language => {
-  return {
-    type: CHANGE_LANGUAGE,
-    payload: language
-  };
+  count: 0
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_APP_NAME:
-      {
-        return { ...state,
-          appName: action.payload
-        };
-      }
-
-    case ENQUEUE_MESSAGE:
-      console.log('Action in app', action);
+    case UPDATE_COUNT:
       return { ...state,
-        messages: [...state.messages, action.payload]
-      };
-
-    case CHANGE_LANGUAGE:
-      return { ...state,
-        language: action.payload
+        count: state.count + action.payload
       };
 
     default:
       return state;
   }
-
-  return result;
 };
 
-const remoteAppScope = 'mfe1';
-const hostAppScope = 'host';
-
-const getMessages = state => {
-  if (state[remoteAppScope]) return state[remoteAppScope].messages;else return [];
+const actions = {
+  updateCount: byValue => ({
+    type: UPDATE_COUNT,
+    payload: byValue
+  }),
+  updateGlobalCount: byValue => ({
+    type: UPDATE_GLOBAL_COUNT,
+    payload: byValue
+  })
 };
-
+const selectors = {
+  getGlobalLanguage: state => state[hostScope] ? state[hostScope].language : globalDefault.language,
+  getGlobalCount: state => state[hostScope] ? state[hostScope].count : globalDefault.count,
+  getCount: state => state[mfeScope] ? state[mfeScope].count : initialState.count
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);
+
+/***/ }),
+
+/***/ "./src/styled.jsx":
+/*!************************!*\
+  !*** ./src/styled.jsx ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((styled_components__WEBPACK_IMPORTED_MODULE_0___default().h1)`
+  font-size: 48px;
+  font-weight: 100;
+  font-family: Arial, Helvetica, sans-serif !important;
+`);
 
 /***/ })
 
