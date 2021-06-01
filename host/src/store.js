@@ -8,24 +8,39 @@ const hostScope = 'host';
 const initialState = {
   language: 'en',
   count: 0,
+  messages: {}
 };
 
 const hostReducer = (state = initialState, action) => {
+  const updatedMessages = {...state.messages};
+  if (action.type.startsWith('GLOBAL/')) {
+    if (updatedMessages.hasOwnProperty(action.type)) {
+      updatedMessages[action.type].push(action.payload);
+    } else {
+      updatedMessages[action.type] = [action.payload];
+    }
+  }
   switch (action.type) {
     case SELECT_LANGUAGE: {
       return {
         ...state,
         language: action.payload,
+        messages: updatedMessages,
       };
     }
     case UPDATE_COUNT: {
       return {
         ...state,
-        count: state.count + action.payload
+        count: state.count + action.payload,
+        messages: updatedMessages,
       }
     }
-    default:
-      return state;
+    default: {
+      return {
+        ...state,
+        messages: updatedMessages,
+      }
+    }
   }
 };
 
