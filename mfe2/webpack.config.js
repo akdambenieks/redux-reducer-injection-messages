@@ -36,6 +36,9 @@ module.exports = {
       exposes: {
         './MFE2': './src/MFE2',
       },
+      remotes: {
+        host: 'host@http://localhost:3001/host.js'
+      },
       shared: {
         ...deps,
         react: {

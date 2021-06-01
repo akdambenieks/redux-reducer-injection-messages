@@ -1,78 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
+import reducer, { actions, selectors, mfeScope } from './reducer';
+import { StyledTitle, CountUpdateValueContainer, StyledInput, StyledLabel } from './styled.jsx';
+import GREETING from './constants.js';
+import Counter from 'host/Counter';
 
-import reducer, { actions, selectors } from './reducer';
-
-const { getLanguage, getAppName, getLanguageFromMessages } = selectors;
-const { changeAppNameAction, enqueueMessageAction } = actions;
-
-const mfeScope = 'mfe2';
+const { getGlobalLanguage, getCount, getGlobalCount } = selectors;
+const { updateCount, updateGlobalCount } = actions;
 
 const MFE2 = () => {
   const dispatch = useDispatch();
-  const languageFromHost = useSelector(state => getLanguageFromMessages(state));
-  const language = useSelector(state => getLanguage(state));
-  const appName = useSelector(state => getAppName(state));
-  const [remoteAppInput, setRemoteAppInput] = useState('');
-  const [remoteAppIncrementDecrementByValue, setRemoteAppIncrementDecrementByValue] = useState(1);
+  const language = useSelector(getGlobalLanguage);
+  const count = useSelector(getCount);
+  const globalCount = useSelector(getGlobalCount);
+  const [countUpdateValue, setCountUpdateValue] = useState(1);
+
+  const onIncrement = () => dispatch(updateCount(parseInt(countUpdateValue)));
+  const onDecrement = () =>  dispatch(updateCount(parseInt(-countUpdateValue)));
+  const onGlobalIncrement = () => dispatch(updateGlobalCount(parseInt(countUpdateValue)));
+  const onGlobalDecrement = () =>  dispatch(updateGlobalCount(parseInt(-countUpdateValue)));
+  const changeCountUpdateValue = value => setCountUpdateValue(value);
   
   return (
     <div style={{ marginTop: '10px' }}>
-      <div>MFE2</div>
-      <div>
-        MFE2's name from the redux store : {appName}
-      </div>
-
-      <div>
-        MFE2's language from the redux store : {language}
-      </div>
-
-      <div>
-        MFE2's language derived from host getMessages : {languageFromHost}
-      </div>
-
-      <div>
-        <input
-          style={{ marginRight: '10px' }}
-          type="text"
-          onChange={(e) => {
-            setRemoteAppInput(e.target.value);
-          }}
-        />
-        <button onClick={() => dispatch(changeAppNameAction(remoteAppInput))}>
-          Dispatch MFE2 new name
-        </button>
-        <div>
-          <label htmlFor="increment-decrement-by-value">Increment/Decrement by: </label>
-          <input
-            id="increment-decrement-by-value"
-            style={{ marginRight: '10px' }}
-            value={remoteAppIncrementDecrementByValue}
-            type="number"
-            onChange={(e) => {
-              setRemoteAppIncrementDecrementByValue(e.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <button onClick={() => dispatch(enqueueMessageAction(
-            {
-              type: 'UPDATE_COUNT',
-              payload: remoteAppIncrementDecrementByValue
-            }
-          ))}>
-            Increment
-          </button>
-          <button onClick={() => dispatch(enqueueMessageAction(
-            {
-              type: 'UPDATE_COUNT',
-              payload: -remoteAppIncrementDecrementByValue
-            }
-          ))}>
-            Decrement
-          </button>
-        </div>
-      </div>
+      <StyledTitle>{GREETING[language]}</StyledTitle>
+      <CountUpdateValueContainer>
+        <StyledLabel htmlFor="count-update-value">Update Count By:</StyledLabel>
+        <StyledInput type="number" id="count-update-value" onChange={e => changeCountUpdateValue(e.currentTarget.value)} value={countUpdateValue} />
+      </CountUpdateValueContainer>
+      <Counter title="MFE2 Counter" count={count} onIncrement={onIncrement} onDecrement={onDecrement} themeColor="red" />
+      <Counter title="Host Counter from MFE2" count={globalCount} onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue" />
     </div>
   );
 };
