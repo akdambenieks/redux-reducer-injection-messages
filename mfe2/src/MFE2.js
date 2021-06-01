@@ -38,7 +38,10 @@ const MFE2Wrapper = (props) => {
   const { store } = props;
   useEffect(() => {
     store.injectReducer(mfeScope, reducer);
-    return () => console.log('Unmounting MFE2')
+    return () => {
+      console.log('Unmounting MFE2');
+      store.ejectReducer(mfeScope);
+    }
   }, []);
 
   return (

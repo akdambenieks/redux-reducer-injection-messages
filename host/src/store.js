@@ -66,7 +66,16 @@ export default function configureStore(initialState) {
   store.injectReducer = (key, asyncReducer) => {
     store.asyncReducers[key] = asyncReducer;
     store.replaceReducer(createReducer(store.asyncReducers));
+    const processMessageQueueAction = key.toUpperCase().concat('/PROCESS_MESSAGE_QUEUE');
+    const messageQueue = store.getState()[hostScope].messages;
+    store.dispatch({ type: processMessageQueueAction, payload: messageQueue});
   };
+
+  store.ejectReducer = (key) => {
+    console.log('Ejecting Reducer: ', key);
+    delete store.asyncReducers[key];
+    store.replaceReducer(createReducer(store.asyncReducers));
+  }
 
   return store;
 }

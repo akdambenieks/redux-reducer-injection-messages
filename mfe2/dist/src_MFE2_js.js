@@ -85,7 +85,10 @@ const MFE2Wrapper = props => {
   } = props;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     store.injectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.mfeScope, _reducer__WEBPACK_IMPORTED_MODULE_2__.default);
-    return () => console.log('Unmounting MFE2');
+    return () => {
+      console.log('Unmounting MFE2');
+      store.ejectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.mfeScope);
+    };
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
     store: store || {}
@@ -130,8 +133,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const UPDATE_COUNT = 'MFE2/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
+const PROCESS_MESSAGE_QUEUE = 'MFE2/PROCESS_MESSAGE_QUEUE';
 const initialState = {
-  count: 0
+  count: 0,
+  globalCount: 0
 };
 const globalDefault = {
   language: 'en',
@@ -152,6 +157,15 @@ const actions = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case PROCESS_MESSAGE_QUEUE:
+      console.log('message queue: ', action.payload);
+      return state;
+
+    case UPDATE_GLOBAL_COUNT:
+      return { ...state,
+        globalCount: state.count + action.payload
+      };
+
     case UPDATE_COUNT:
       {
         return { ...state,
@@ -166,7 +180,7 @@ const reducer = (state = initialState, action) => {
 const selectors = {
   getGlobalLanguage: state => state[hostScope] ? state[hostScope].language : globalDefault.language,
   getCount: state => state[mfeScope] ? state[mfeScope].count : initialState.count,
-  getGlobalCount: state => state[hostScope] ? state[hostScope].count : globalDefault.count
+  getGlobalCount: state => state[mfeScope] ? state[mfeScope].count : initialState.globalCount
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);
 
