@@ -35,6 +35,7 @@ module.exports = {
       filename: 'mfe2.js',
       exposes: {
         './MFE2': './src/MFE2',
+        './reducer': './src/reducer',
       },
       remotes: {
         host: 'host@http://localhost:3001/host.js'

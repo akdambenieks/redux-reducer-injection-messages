@@ -69,15 +69,15 @@ const MFE1 = () => {
   }));
 };
 
-const MFE1Wrapper = props => {
-  const {
-    store
-  } = props;
+const MFE1Wrapper = () =>
+/*props*/
+{
+  // const { store } = props;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    store.injectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.mfeScope, _reducer__WEBPACK_IMPORTED_MODULE_2__.default);
+    // store.injectReducer(mfeScope, reducer);
+    console.log('Mounting MFE1');
     return () => {
-      console.log('Unmounting MFE1');
-      store.ejectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.mfeScope);
+      console.log('Unmounting MFE1'); // store.ejectReducer(mfeScope);
     };
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
@@ -121,12 +121,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+// import processMessageQueue from './utils';
 const UPDATE_COUNT = 'MFE1/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
-const PROCESS_MESSAGE_QUEUE = 'MFE1/PROCESS_MESSAGE_QUEUE';
+const PROCESS_MESSAGE_QUEUE = 'MFE1/PROCESS_MESSAGE_QUEUE'; // const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
+
 const hostScope = 'host';
 const mfeScope = 'mfe1';
 const initialState = {
+  language: 'en',
   count: 0,
   globalCount: 0
 };
@@ -138,7 +141,8 @@ const globalDefault = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case PROCESS_MESSAGE_QUEUE:
-      console.log('message queue: ', action.payload);
+      console.log('message queue from host: ', action.payload); // const stateUpdates = processMessageQueue(payload);
+
       return state;
 
     case UPDATE_GLOBAL_COUNT:

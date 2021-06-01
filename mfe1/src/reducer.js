@@ -1,11 +1,15 @@
+// import processMessageQueue from './utils';
+
 const UPDATE_COUNT = 'MFE1/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 const PROCESS_MESSAGE_QUEUE = 'MFE1/PROCESS_MESSAGE_QUEUE';
+// const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 
 const hostScope = 'host';
 export const mfeScope = 'mfe1';
 
 const initialState = {
+  language: 'en',
   count: 0,
   globalCount: 0
 };
@@ -18,7 +22,8 @@ const globalDefault = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case PROCESS_MESSAGE_QUEUE:
-      console.log('message queue: ', action.payload);
+      console.log('message queue from host: ', action.payload);
+      // const stateUpdates = processMessageQueue(payload);
       return state
     case UPDATE_GLOBAL_COUNT:
       return {

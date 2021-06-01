@@ -79,15 +79,15 @@ const MFE2 = () => {
   }));
 };
 
-const MFE2Wrapper = props => {
-  const {
-    store
-  } = props;
+const MFE2Wrapper = () =>
+/*props*/
+{
+  // const { store } = props;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    store.injectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.mfeScope, _reducer__WEBPACK_IMPORTED_MODULE_2__.default);
+    console.log('Mounting MFE2'); // store.injectReducer(mfeScope, reducer);
+
     return () => {
-      console.log('Unmounting MFE2');
-      store.ejectReducer(_reducer__WEBPACK_IMPORTED_MODULE_2__.mfeScope);
+      console.log('Unmounting MFE2'); // store.ejectReducer(mfeScope);
     };
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {

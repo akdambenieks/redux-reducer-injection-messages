@@ -512,6 +512,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "webpack/sharing/consume/default/react-router-dom/react-router-dom");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_router_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _route_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./route-config */ "./src/pages/route-config.js");
+/* harmony import */ var mfe1_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mfe1/reducer */ "webpack/container/remote/mfe1/reducer");
+/* harmony import */ var mfe1_reducer__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mfe1_reducer__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var mfe2_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! mfe2/reducer */ "webpack/container/remote/mfe2/reducer");
+/* harmony import */ var mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(mfe2_reducer__WEBPACK_IMPORTED_MODULE_4__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /* eslint-disable react/jsx-props-no-spreading */
@@ -519,19 +523,22 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 
 
+
+
 const Routes = ({
   store
 }) => {
-  const elements = _route_config__WEBPACK_IMPORTED_MODULE_2__.default.map(({
-    render,
-    ...route
-  }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Route, _extends({
+  store.injectReducer('mfe1', (mfe1_reducer__WEBPACK_IMPORTED_MODULE_3___default()));
+  store.injectReducer('mfe2', (mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default()));
+  const elements = _route_config__WEBPACK_IMPORTED_MODULE_2__.default.map((
+  /*{render, ...*/
+  route
+  /*}*/
+  ) =>
+  /*#__PURE__*/
+  react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Route, _extends({
     key: route.path
-  }, route, {
-    render: props => render({ ...props,
-      store
-    })
-  })));
+  }, route)));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
     fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading...")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Switch, null, elements));
@@ -552,35 +559,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/index */ "./src/utils/index.js");
-/* harmony import */ var _Host__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Host */ "./src/pages/Host/index.js");
+/* harmony import */ var _Host__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Host */ "./src/pages/Host/index.js");
+/* harmony import */ var mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mfe1/MFE1 */ "webpack/container/remote/mfe1/MFE1");
+/* harmony import */ var mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mfe2/MFE2 */ "webpack/container/remote/mfe2/MFE2");
+/* harmony import */ var mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2__);
+// import React from 'react';
+// import dynamicFederation from '../utils/index'
 
 
- // const dynamicFederation = async (scope, module) => {
-//   const container = window[scope]; // or get the container somewhere else
-//   // Initialize the container, it may provide shared modules
-//   await container.init(__webpack_share_scopes__.default);
-//   return container.get(module).then((factory) => {
-//     const Module = factory();
-//     return Module;
-//   });
-// };
+ // const MFE1 = React.lazy(() => dynamicFederation('mfe1', './MFE1'));
+// const MFE2 = React.lazy(() => dynamicFederation('mfe2', './MFE2'));
+// const MFE1 = React.lazy(() => import('mfe/MFE1'));
+// const MFE2 = React.lazy(() => import('mfe2/MFE2'));
 
-const MFE1 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(() => (0,_utils_index__WEBPACK_IMPORTED_MODULE_1__.default)('mfe1', './MFE1'));
-const MFE2 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(() => (0,_utils_index__WEBPACK_IMPORTED_MODULE_1__.default)('mfe2', './MFE2'));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/mfe1',
-  render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MFE1, props),
+  // render: (props) => <MFE1 {...props} />,
+  component: (mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1___default()),
   exact: false
 }, {
   path: '/mfe2',
-  render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MFE2, props),
+  // render: (props) => <MFE2 {...props} />,
+  component: (mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2___default()),
   exact: false
 }, {
   path: '/',
-  render: props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Host__WEBPACK_IMPORTED_MODULE_2__.default, props),
+  // render: (props) => <Host {...props} />,
+  component: _Host__WEBPACK_IMPORTED_MODULE_0__.default,
   exact: true
 }]);
 
@@ -667,21 +673,17 @@ function configureStore(initialState) {
   store.asyncReducers = {};
 
   store.injectReducer = (key, asyncReducer) => {
+    console.log('Injecting Reducer: ', key);
     store.asyncReducers[key] = asyncReducer;
-    store.replaceReducer(createReducer(store.asyncReducers));
-    const processMessageQueueAction = key.toUpperCase().concat('/PROCESS_MESSAGE_QUEUE');
-    const messageQueue = store.getState()[hostScope].messages;
-    store.dispatch({
-      type: processMessageQueueAction,
-      payload: messageQueue
-    });
-  };
+    store.replaceReducer(createReducer(store.asyncReducers)); // const processMessageQueueAction = key.toUpperCase().concat('/PROCESS_MESSAGE_QUEUE');
+    // const messageQueue = store.getState()[hostScope].messages;
+    // store.dispatch({ type: processMessageQueueAction, payload: messageQueue});
+  }; // store.ejectReducer = (key) => {
+  //   console.log('Ejecting Reducer: ', key);
+  //   delete store.asyncReducers[key];
+  //   store.replaceReducer(createReducer(store.asyncReducers));
+  // }
 
-  store.ejectReducer = key => {
-    console.log('Ejecting Reducer: ', key);
-    delete store.asyncReducers[key];
-    store.replaceReducer(createReducer(store.asyncReducers));
-  };
 
   return store;
 }
@@ -707,47 +709,6 @@ const selectors = {
   getLanguage: state => state[hostScope].language,
   getCount: state => state[hostScope].count
 };
-
-/***/ }),
-
-/***/ "./src/utils/dynamicFederation.js":
-/*!****************************************!*\
-  !*** ./src/utils/dynamicFederation.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (async (scope, module) => {
-  const container = window[scope]; // or get the container somewhere else
-  // Initialize the container, it may provide shared modules
-
-  await container.init(__webpack_require__.S.default);
-  return container.get(module).then(factory => {
-    const Module = factory();
-    return Module;
-  });
-});
-
-/***/ }),
-
-/***/ "./src/utils/index.js":
-/*!****************************!*\
-  !*** ./src/utils/index.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _dynamicFederation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dynamicFederation */ "./src/utils/dynamicFederation.js");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_dynamicFederation__WEBPACK_IMPORTED_MODULE_0__.default);
 
 /***/ })
 

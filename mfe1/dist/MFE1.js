@@ -12,6 +12,9 @@ var mfe1;
 var moduleMap = {
 	"./MFE1": () => {
 		return __webpack_require__.e("src_MFE1_js").then(() => (() => ((__webpack_require__(/*! ./src/MFE1 */ "./src/MFE1.js")))));
+	},
+	"./reducer": () => {
+		return __webpack_require__.e("src_reducer_js").then(() => (() => ((__webpack_require__(/*! ./src/reducer */ "./src/reducer.js")))));
 	}
 };
 var get = (module, getScope) => {

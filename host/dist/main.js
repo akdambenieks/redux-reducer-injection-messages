@@ -9,6 +9,28 @@
 
 Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_history_esm_history_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react-webpack_sharing_consume_default_styled-components-7d97ef"), __webpack_require__.e("src_bootstrap_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./bootstrap */ "./src/bootstrap.js"));
 
+/***/ }),
+
+/***/ "webpack/container/reference/mfe1":
+/*!*****************************************************!*\
+  !*** external "mfe1@http://localhost:3002/mfe1.js" ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = mfe1@http://localhost:3002/mfe1.js;
+
+/***/ }),
+
+/***/ "webpack/container/reference/mfe2":
+/*!*****************************************************!*\
+  !*** external "mfe2@http://localhost:3003/mfe2.js" ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = mfe2@http://localhost:3003/mfe2.js;
+
 /***/ })
 
 /******/ 	});
@@ -164,6 +186,83 @@ Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_history_
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/remotes loading */
+/******/ 	(() => {
+/******/ 		var chunkMapping = {
+/******/ 			"src_bootstrap_js": [
+/******/ 				"webpack/container/remote/mfe1/MFE1",
+/******/ 				"webpack/container/remote/mfe2/MFE2",
+/******/ 				"webpack/container/remote/mfe1/reducer",
+/******/ 				"webpack/container/remote/mfe2/reducer"
+/******/ 			]
+/******/ 		};
+/******/ 		var idToExternalAndNameMapping = {
+/******/ 			"webpack/container/remote/mfe1/MFE1": [
+/******/ 				"default",
+/******/ 				"./MFE1",
+/******/ 				"webpack/container/reference/mfe1"
+/******/ 			],
+/******/ 			"webpack/container/remote/mfe2/MFE2": [
+/******/ 				"default",
+/******/ 				"./MFE2",
+/******/ 				"webpack/container/reference/mfe2"
+/******/ 			],
+/******/ 			"webpack/container/remote/mfe1/reducer": [
+/******/ 				"default",
+/******/ 				"./reducer",
+/******/ 				"webpack/container/reference/mfe1"
+/******/ 			],
+/******/ 			"webpack/container/remote/mfe2/reducer": [
+/******/ 				"default",
+/******/ 				"./reducer",
+/******/ 				"webpack/container/reference/mfe2"
+/******/ 			]
+/******/ 		};
+/******/ 		__webpack_require__.f.remotes = (chunkId, promises) => {
+/******/ 			if(__webpack_require__.o(chunkMapping, chunkId)) {
+/******/ 				chunkMapping[chunkId].forEach((id) => {
+/******/ 					var getScope = __webpack_require__.R;
+/******/ 					if(!getScope) getScope = [];
+/******/ 					var data = idToExternalAndNameMapping[id];
+/******/ 					if(getScope.indexOf(data) >= 0) return;
+/******/ 					getScope.push(data);
+/******/ 					if(data.p) return promises.push(data.p);
+/******/ 					var onError = (error) => {
+/******/ 						if(!error) error = new Error("Container missing");
+/******/ 						if(typeof error.message === "string")
+/******/ 							error.message += '\nwhile loading "' + data[1] + '" from ' + data[2];
+/******/ 						__webpack_modules__[id] = () => {
+/******/ 							throw error;
+/******/ 						}
+/******/ 						data.p = 0;
+/******/ 					};
+/******/ 					var handleFunction = (fn, arg1, arg2, d, next, first) => {
+/******/ 						try {
+/******/ 							var promise = fn(arg1, arg2);
+/******/ 							if(promise && promise.then) {
+/******/ 								var p = promise.then((result) => (next(result, d)), onError);
+/******/ 								if(first) promises.push(data.p = p); else return p;
+/******/ 							} else {
+/******/ 								return next(promise, d, first);
+/******/ 							}
+/******/ 						} catch(error) {
+/******/ 							onError(error);
+/******/ 						}
+/******/ 					}
+/******/ 					var onExternal = (external, _, first) => (external ? handleFunction(__webpack_require__.I, data[0], 0, external, onInitialized, first) : onError());
+/******/ 					var onInitialized = (_, external, first) => (handleFunction(external.get, data[1], getScope, 0, onFactory, first));
+/******/ 					var onFactory = (factory) => {
+/******/ 						data.p = 1;
+/******/ 						__webpack_modules__[id] = (module) => {
+/******/ 							module.exports = factory();
+/******/ 						}
+/******/ 					};
+/******/ 					handleFunction(__webpack_require__, data[2], 0, 0, onExternal, 1);
+/******/ 				});
+/******/ 			}
+/******/ 		}
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/sharing */
 /******/ 	(() => {
 /******/ 		__webpack_require__.S = {};
@@ -209,6 +308,8 @@ Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_history_
 /******/ 					register("react", "16.14.0", () => (Promise.all([__webpack_require__.e("vendors-node_modules_react_index_js"), __webpack_require__.e("node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_320c-_a15c1")]).then(() => (() => (__webpack_require__(/*! ./node_modules/react/index.js */ "./node_modules/react/index.js"))))));
 /******/ 					register("redux", "4.1.0", () => (__webpack_require__.e("vendors-node_modules_redux_es_redux_js").then(() => (() => (__webpack_require__(/*! ./node_modules/redux/es/redux.js */ "./node_modules/redux/es/redux.js"))))));
 /******/ 					register("styled-components", "5.3.0", () => (Promise.all([__webpack_require__.e("vendors-node_modules_styled-components_dist_styled-components_browser_esm_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react-_7646")]).then(() => (() => (__webpack_require__(/*! ./node_modules/styled-components/dist/styled-components.browser.esm.js */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"))))));
+/******/ 					initExternal("webpack/container/reference/mfe1");
+/******/ 					initExternal("webpack/container/reference/mfe2");
 /******/ 				}
 /******/ 				break;
 /******/ 			}

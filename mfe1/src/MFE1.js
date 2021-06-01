@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
-import reducer, {
-  mfeScope,
+import /*reducer, */{
+  // mfeScope,
   selectors,
   actions
 } from './reducer';
@@ -33,13 +33,14 @@ const MFE1 = () => {
   );
 };
 
-const MFE1Wrapper = (props) => {
-  const { store } = props;
+const MFE1Wrapper = (/*props*/) => {
+  // const { store } = props;
   useEffect(() => {
-    store.injectReducer(mfeScope, reducer);
+    // store.injectReducer(mfeScope, reducer);
+    console.log('Mounting MFE1');
     return () => {
       console.log('Unmounting MFE1');
-      store.ejectReducer(mfeScope);
+      // store.ejectReducer(mfeScope);
     }
   }, []);
 

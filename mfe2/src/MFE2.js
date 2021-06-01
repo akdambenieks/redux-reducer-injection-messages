@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Provider, useSelector, useDispatch } from 'react-redux';
-import reducer, { actions, selectors, mfeScope } from './reducer';
+import /*reducer, */{ actions, selectors/*, mfeScope */} from './reducer';
 import { StyledTitle, CountUpdateValueContainer, StyledInput, StyledLabel } from './styled.jsx';
 import GREETING from './constants.js';
 import Counter from 'host/Counter';
@@ -34,13 +34,14 @@ const MFE2 = () => {
   );
 };
 
-const MFE2Wrapper = (props) => {
-  const { store } = props;
+const MFE2Wrapper = (/*props*/) => {
+  // const { store } = props;
   useEffect(() => {
-    store.injectReducer(mfeScope, reducer);
+    console.log('Mounting MFE2');
+    // store.injectReducer(mfeScope, reducer);
     return () => {
       console.log('Unmounting MFE2');
-      store.ejectReducer(mfeScope);
+      // store.ejectReducer(mfeScope);
     }
   }, []);
 

@@ -42,6 +42,10 @@ module.exports = {
       exposes: {
         './Counter': './src/components/Counter/index',
       },
+      remotes: {
+        mfe1: 'mfe1@http://localhost:3002/mfe1.js',
+        mfe2: 'mfe2@http://localhost:3003/mfe2.js',
+      },
       shared: {
         ...deps,
         react: {

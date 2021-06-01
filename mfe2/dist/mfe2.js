@@ -12,6 +12,9 @@ var mfe2;
 var moduleMap = {
 	"./MFE2": () => {
 		return __webpack_require__.e("src_MFE2_js").then(() => (() => ((__webpack_require__(/*! ./src/MFE2 */ "./src/MFE2.js")))));
+	},
+	"./reducer": () => {
+		return __webpack_require__.e("src_reducer_js").then(() => (() => ((__webpack_require__(/*! ./src/reducer */ "./src/reducer.js")))));
 	}
 };
 var get = (module, getScope) => {
