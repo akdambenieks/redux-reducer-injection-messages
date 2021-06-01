@@ -44,106 +44,6 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default().render( /*#__PURE__*/react__WEB
 
 /***/ }),
 
-/***/ "./src/components/Counter/index.jsx":
-/*!******************************************!*\
-  !*** ./src/components/Counter/index.jsx ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled */ "./src/components/Counter/styled.jsx");
-
-
-
-const Counter = ({
-  title,
-  count,
-  onIncrement,
-  onDecrement,
-  themeColor
-}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterTitle, {
-    themeColor: themeColor
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
-    onClick: () => onIncrement(),
-    themeColor: themeColor
-  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterCount, null, count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
-    onClick: () => onDecrement(),
-    themeColor: themeColor
-  }, "-")));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Counter);
-
-/***/ }),
-
-/***/ "./src/components/Counter/styled.jsx":
-/*!*******************************************!*\
-  !*** ./src/components/Counter/styled.jsx ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CounterButton": () => (/* binding */ CounterButton),
-/* harmony export */   "CounterContainer": () => (/* binding */ CounterContainer),
-/* harmony export */   "CounterCount": () => (/* binding */ CounterCount),
-/* harmony export */   "CounterTitle": () => (/* binding */ CounterTitle),
-/* harmony export */   "CounterWrapper": () => (/* binding */ CounterWrapper)
-/* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
-
-const CounterButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().button)`
-  font-size: 32px;
-  padding: 4px 16px;
-  background-color: white;
-  text-decoration: none;
-  font-weight: 500;
-  color: ${({
-  themeColor
-}) => themeColor};
-  border: solid 1px gainsboro;
-  border-radius: 8px;
-`;
-const CounterContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  padding: 16px 0px;
-`;
-const CounterCount = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  margin: 0px 16px;
-  font-size: 48px;
-  min-width: 80px;
-  text-align: center;
-`;
-const CounterTitle = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  display: inline;
-  font-size: 24px;
-  color: ${({
-  themeColor
-}) => themeColor};
-`;
-const CounterWrapper = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: middle;
-  font-family: Arial, Helvetica, sans-serif !important;
-  margin-bottom: 48px;
-`;
-
-/***/ }),
-
 /***/ "./src/components/Header/index.jsx":
 /*!*****************************************!*\
   !*** ./src/components/Header/index.jsx ***!
@@ -386,38 +286,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store */ "./src/store.js");
-/* harmony import */ var _components_Counter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Counter */ "./src/components/Counter/index.jsx");
-/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styled */ "./src/pages/Host/styled.jsx");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./constants */ "./src/pages/Host/constants.js");
-
+/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styled */ "./src/pages/Host/styled.jsx");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./src/pages/Host/constants.js");
 
 
 
 
 
 const {
-  getLanguage,
-  getCount
+  getLanguage
 } = _store__WEBPACK_IMPORTED_MODULE_2__.selectors;
-const {
-  updateCount
-} = _store__WEBPACK_IMPORTED_MODULE_2__.actions;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
-  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getLanguage);
-  const count = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getCount);
-
-  const onIncrement = () => dispatch(updateCount(1));
-
-  const onDecrement = () => dispatch(updateCount(-1));
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_4__.default, null, _constants__WEBPACK_IMPORTED_MODULE_5__.default[language]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter__WEBPACK_IMPORTED_MODULE_3__.default, {
-    title: "Host Counter",
-    count: count,
-    onIncrement: onIncrement,
-    onDecrement: onDecrement,
-    themeColor: "blue"
-  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants__WEBPACK_IMPORTED_MODULE_4__.default[language]));
 });
 
 /***/ }),
@@ -528,15 +409,15 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const Routes = ({
   store
 }) => {
-  store.injectReducer('mfe1', (mfe1_reducer__WEBPACK_IMPORTED_MODULE_3___default()));
-  store.injectReducer('mfe2', (mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default()));
-  const elements = _route_config__WEBPACK_IMPORTED_MODULE_2__.default.map((
-  /*{render, ...*/
-  route
-  /*}*/
-  ) =>
-  /*#__PURE__*/
-  react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Route, _extends({
+  const mfeReducerArray = [{
+    key: 'mfe1',
+    reducer: (mfe1_reducer__WEBPACK_IMPORTED_MODULE_3___default())
+  }, {
+    key: 'mfe2',
+    reducer: (mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default())
+  }];
+  store.injectReducers(mfeReducerArray);
+  const elements = _route_config__WEBPACK_IMPORTED_MODULE_2__.default.map(route => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Route, _extends({
     key: route.path
   }, route)));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, {
@@ -564,28 +445,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mfe2/MFE2 */ "webpack/container/remote/mfe2/MFE2");
 /* harmony import */ var mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2__);
-// import React from 'react';
-// import dynamicFederation from '../utils/index'
 
 
- // const MFE1 = React.lazy(() => dynamicFederation('mfe1', './MFE1'));
-// const MFE2 = React.lazy(() => dynamicFederation('mfe2', './MFE2'));
-// const MFE1 = React.lazy(() => import('mfe/MFE1'));
-// const MFE2 = React.lazy(() => import('mfe2/MFE2'));
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/mfe1',
-  // render: (props) => <MFE1 {...props} />,
   component: (mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1___default()),
   exact: false
 }, {
   path: '/mfe2',
-  // render: (props) => <MFE2 {...props} />,
   component: (mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2___default()),
   exact: false
 }, {
   path: '/',
-  // render: (props) => <Host {...props} />,
   component: _Host__WEBPACK_IMPORTED_MODULE_0__.default,
   exact: true
 }]);
@@ -602,7 +474,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SELECT_LANGUAGE": () => (/* binding */ SELECT_LANGUAGE),
-/* harmony export */   "UPDATE_COUNT": () => (/* binding */ UPDATE_COUNT),
 /* harmony export */   "default": () => (/* binding */ configureStore),
 /* harmony export */   "store": () => (/* binding */ store),
 /* harmony export */   "actions": () => (/* binding */ actions),
@@ -612,48 +483,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
 
 const SELECT_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
-const UPDATE_COUNT = 'GLOBAL/UPDATE_COUNT';
 const hostScope = 'host';
 const initialState = {
-  language: 'en',
-  count: 0,
-  messages: {}
+  language: 'en'
 };
 
 const hostReducer = (state = initialState, action) => {
-  const updatedMessages = { ...state.messages
-  };
-
-  if (action.type.startsWith('GLOBAL/')) {
-    if (updatedMessages.hasOwnProperty(action.type)) {
-      updatedMessages[action.type].push(action.payload);
-    } else {
-      updatedMessages[action.type] = [action.payload];
-    }
-  }
-
   switch (action.type) {
     case SELECT_LANGUAGE:
       {
         return { ...state,
-          language: action.payload,
-          messages: updatedMessages
-        };
-      }
-
-    case UPDATE_COUNT:
-      {
-        return { ...state,
-          count: state.count + action.payload,
-          messages: updatedMessages
+          language: action.payload
         };
       }
 
     default:
       {
-        return { ...state,
-          messages: updatedMessages
-        };
+        return state;
       }
   }
 };
@@ -672,18 +518,16 @@ function configureStore(initialState) {
   const store = (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(createReducer(), enhancer);
   store.asyncReducers = {};
 
-  store.injectReducer = (key, asyncReducer) => {
-    console.log('Injecting Reducer: ', key);
-    store.asyncReducers[key] = asyncReducer;
-    store.replaceReducer(createReducer(store.asyncReducers)); // const processMessageQueueAction = key.toUpperCase().concat('/PROCESS_MESSAGE_QUEUE');
-    // const messageQueue = store.getState()[hostScope].messages;
-    // store.dispatch({ type: processMessageQueueAction, payload: messageQueue});
-  }; // store.ejectReducer = (key) => {
-  //   console.log('Ejecting Reducer: ', key);
-  //   delete store.asyncReducers[key];
-  //   store.replaceReducer(createReducer(store.asyncReducers));
-  // }
-
+  store.injectReducers = reducers => {
+    console.log('Injecting Reducers');
+    reducers.map(({
+      key,
+      reducer
+    }) => {
+      store.asyncReducers[key] = reducer;
+    });
+    store.replaceReducer(createReducer(store.asyncReducers));
+  };
 
   return store;
 }
@@ -699,15 +543,10 @@ const actions = {
   selectLanguage: language => ({
     type: SELECT_LANGUAGE,
     payload: language
-  }),
-  updateCount: byValue => ({
-    type: UPDATE_COUNT,
-    payload: byValue
   })
 };
 const selectors = {
-  getLanguage: state => state[hostScope].language,
-  getCount: state => state[hostScope].count
+  getLanguage: state => state[hostScope].language
 };
 
 /***/ })

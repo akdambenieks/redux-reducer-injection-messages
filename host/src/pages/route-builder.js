@@ -7,9 +7,18 @@ import mfe1reducer from 'mfe1/reducer';
 import mfe2reducer from 'mfe2/reducer';
 
 const Routes = ({ store }) => {
-  store.injectReducer('mfe1', mfe1reducer);
-  store.injectReducer('mfe2', mfe2reducer);
-  const elements = config.map((/*{render, ...*/route/*}*/) => <Route key={route.path} {...route}/* render={(props) => render({...props, store})}*/ />);
+  const mfeReducerArray = [
+    {
+      key: 'mfe1',
+      reducer: mfe1reducer
+    },
+    {
+      key: 'mfe2',
+      reducer: mfe2reducer
+    }
+  ]
+  store.injectReducers(mfeReducerArray);
+  const elements = config.map((route) => <Route key={route.path} {...route} />);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>{elements}</Switch>
