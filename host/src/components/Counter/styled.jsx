@@ -3,12 +3,10 @@ import styled from 'styled-components';
 export const CounterButton = styled.button`
   font-size: 32px;
   padding: 4px 16px;
-  background-color: white;
   text-decoration: none;
   font-weight: 500;
-  color: ${({ themeColor }) => themeColor};
-  border: solid 1px gainsboro;
-  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 30px;
 `
 
 export const CounterContainer = styled.div`

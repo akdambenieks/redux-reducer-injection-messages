@@ -1,6 +1,7 @@
 import { combineReducers, createStore, compose } from 'redux';
 
 export const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
+const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 
 const hostScope = 'host';
 
@@ -64,9 +65,13 @@ export const actions = {
   selectLanguage: (language) => ({
     type: SELECT_GLOBAL_LANGUAGE,
     payload: language
+  }),
+  updateGlobalCount: (byValue) => ({
+    type: UPDATE_GLOBAL_COUNT,
+    payload: byValue
   })
 }
 
 export const selectors = {
-  getLanguage: (state) => state[hostScope].globalLanguage
+  getLanguage: (state) => state[hostScope].globalLanguage,
 }

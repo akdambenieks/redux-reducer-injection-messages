@@ -25,8 +25,9 @@ const MFE1 = () => {
   return (
     <div style={{ marginTop: '10px' }}>
       <StyledTitle>{GREETING[globalLanguage]}</StyledTitle>
-      <Counter title="Global Counter for MFE1" count={globalCount} onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue"/>
-      <Counter title="Counter for MFE1 Scope" count={scopeCount} onIncrement={onScopeIncrement} onDecrement={onScopeDecrement} themeColor="green"/>
+      <h1>The count is: {globalCount} </h1>
+      {/* <Counter title="Global Counter for MFE1" count={globalCount} onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue"/> */}
+      {/*<Counter title="Counter for MFE1 Scope" count={scopeCount} onIncrement={onScopeIncrement} onDecrement={onScopeDecrement} themeColor="green"/> */}
     </div>
   );
 };

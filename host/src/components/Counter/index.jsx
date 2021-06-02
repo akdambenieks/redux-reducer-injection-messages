@@ -1,13 +1,12 @@
 import React from 'react';
-import { CounterContainer, CounterButton, CounterCount, CounterTitle, CounterWrapper } from './styled';
+import { CounterContainer, CounterButton, CounterTitle, CounterWrapper } from './styled';
 
-const Counter = ({ title, count, onIncrement, onDecrement, themeColor }) => {
+const Counter = ({ title, onIncrement, onDecrement, themeColor }) => {
   return (
     <CounterWrapper>
       <CounterTitle themeColor={themeColor}>{title}</CounterTitle>
       <CounterContainer>
         <CounterButton onClick={() => onIncrement()} themeColor={themeColor}>+</CounterButton>
-        <CounterCount>{count}</CounterCount>
         <CounterButton onClick={() => onDecrement()} themeColor={themeColor}>-</CounterButton>
       </CounterContainer>
     </CounterWrapper>

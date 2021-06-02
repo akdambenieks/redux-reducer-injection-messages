@@ -54,19 +54,7 @@ const MFE1 = () => {
     style: {
       marginTop: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants_js__WEBPACK_IMPORTED_MODULE_4__.default[globalLanguage]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter_index_jsx__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Global Counter for MFE1",
-    count: globalCount,
-    onIncrement: onGlobalIncrement,
-    onDecrement: onGlobalDecrement,
-    themeColor: "blue"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter_index_jsx__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Counter for MFE1 Scope",
-    count: scopeCount,
-    onIncrement: onScopeIncrement,
-    onDecrement: onScopeDecrement,
-    themeColor: "green"
-  }));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants_js__WEBPACK_IMPORTED_MODULE_4__.default[globalLanguage]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "The count is: ", globalCount, " "));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MFE1);
@@ -221,11 +209,11 @@ const reducer = (state = initialState, action) => {
       return { ...state,
         globalCount: state.globalCount + action.payload
       };
-
-    case UPDATE_SCOPE_COUNT:
-      return { ...state,
-        scopeCount: state.scopeCount + action.payload
-      };
+    // case UPDATE_SCOPE_COUNT:
+    //   return {
+    //     ...state,
+    //     scopeCount: state.scopeCount + action.payload
+    //   }
 
     case SELECT_GLOBAL_LANGUAGE:
       return { ...state,

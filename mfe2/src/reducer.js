@@ -2,9 +2,11 @@ import { processGlobalLanguageActions, processGlobalCountActions, processScopeCo
 
 const UPDATE_SCOPE_COUNT = 'MFE2/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
+const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE'
 
 const initialState = {
-  actionLog: {}
+  actionLogForCount: [],
+  language: 'en'
 };
 
 export const mfeScope = 'mfe2';
@@ -22,20 +24,31 @@ export const actions = {
 
 
 const reducer = (state = initialState, action) => {
-  if (action.type.startsWith('GLOBAL/') || action.type.startsWith('MFE2/')) {
-    const existingLogForActionType = state.actionLog[action.type] || [];
-    return {
-      ...state,
-      actionLog: {...state.actionLog, [action.type]: [...existingLogForActionType, action.payload]}
-    }
+  switch (action.type) {
+    case UPDATE_GLOBAL_COUNT:
+      const newState = { ...state };
+      if (action.payload === 1) {
+        newState.actionLogForCount.push('Increment occured');
+      }
+      else {
+        newState.actionLogForCount.push("Decrement occured");
+      }
+      return newState;
+    case SELECT_GLOBAL_LANGUAGE:
+      return {
+        ...state,
+        language: action.payload
+      }
+    default:
+      return state;
   }
-  return state;
 };
 
 export const selectors = {
-  getGlobalLanguage: (state) => processGlobalLanguageActions(state[mfeScope].actionLog),
-  getScopeCount: (state) => processScopeCountActions(state[mfeScope].actionLog),
-  getGlobalCount: (state) => processGlobalCountActions(state[mfeScope].actionLog)
+  getGlobalLanguage: (state) => state[mfeScope].language,
+  getActionLog: (state) => state[mfeScope].actionLogForCount
+  // getScopeCount: (state) => processScopeCountActions(state[mfeScope].actionLog),
+  // getGlobalCount: (state) => processGlobalCountActions(state[mfeScope].actionLog)
 }
 
 export default reducer;

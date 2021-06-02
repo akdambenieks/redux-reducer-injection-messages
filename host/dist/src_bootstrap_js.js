@@ -44,6 +44,101 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default().render( /*#__PURE__*/react__WEB
 
 /***/ }),
 
+/***/ "./src/components/Counter/index.jsx":
+/*!******************************************!*\
+  !*** ./src/components/Counter/index.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled */ "./src/components/Counter/styled.jsx");
+
+
+
+const Counter = ({
+  title,
+  onIncrement,
+  onDecrement,
+  themeColor
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterTitle, {
+    themeColor: themeColor
+  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
+    onClick: () => onIncrement(),
+    themeColor: themeColor
+  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
+    onClick: () => onDecrement(),
+    themeColor: themeColor
+  }, "-")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Counter);
+
+/***/ }),
+
+/***/ "./src/components/Counter/styled.jsx":
+/*!*******************************************!*\
+  !*** ./src/components/Counter/styled.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CounterButton": () => (/* binding */ CounterButton),
+/* harmony export */   "CounterContainer": () => (/* binding */ CounterContainer),
+/* harmony export */   "CounterCount": () => (/* binding */ CounterCount),
+/* harmony export */   "CounterTitle": () => (/* binding */ CounterTitle),
+/* harmony export */   "CounterWrapper": () => (/* binding */ CounterWrapper)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+
+const CounterButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().button)`
+  font-size: 32px;
+  padding: 4px 16px;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 30px;
+`;
+const CounterContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  padding: 16px 0px;
+`;
+const CounterCount = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+  margin: 0px 16px;
+  font-size: 48px;
+  min-width: 80px;
+  text-align: center;
+`;
+const CounterTitle = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+  display: inline;
+  font-size: 24px;
+  color: ${({
+  themeColor
+}) => themeColor};
+`;
+const CounterWrapper = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: middle;
+  font-family: Arial, Helvetica, sans-serif !important;
+  margin-bottom: 48px;
+`;
+
+/***/ }),
+
 /***/ "./src/components/Header/index.jsx":
 /*!*****************************************!*\
   !*** ./src/components/Header/index.jsx ***!
@@ -288,6 +383,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store */ "./src/store.js");
 /* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styled */ "./src/pages/Host/styled.jsx");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./src/pages/Host/constants.js");
+/* harmony import */ var _components_Counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Counter */ "./src/components/Counter/index.jsx");
+
 
 
 
@@ -296,9 +393,23 @@ __webpack_require__.r(__webpack_exports__);
 const {
   getLanguage
 } = _store__WEBPACK_IMPORTED_MODULE_2__.selectors;
+const {
+  updateGlobalCount
+} = _store__WEBPACK_IMPORTED_MODULE_2__.actions;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
+  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getLanguage);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants__WEBPACK_IMPORTED_MODULE_4__.default[language]));
+
+  const onGlobalIncrement = () => dispatch(updateGlobalCount(1));
+
+  const onGlobalDecrement = () => dispatch(updateGlobalCount(-1));
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants__WEBPACK_IMPORTED_MODULE_4__.default[language]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter__WEBPACK_IMPORTED_MODULE_5__.default, {
+    title: "Global Counter for MFE1",
+    onIncrement: onGlobalIncrement,
+    onDecrement: onGlobalDecrement,
+    themeColor: "blue"
+  }));
 });
 
 /***/ }),
@@ -483,6 +594,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
 
 const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
+const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 const hostScope = 'host';
 const initialState = {
   globalLanguage: 'en'
@@ -542,6 +654,10 @@ const actions = {
   selectLanguage: language => ({
     type: SELECT_GLOBAL_LANGUAGE,
     payload: language
+  }),
+  updateGlobalCount: byValue => ({
+    type: UPDATE_GLOBAL_COUNT,
+    payload: byValue
   })
 };
 const selectors = {

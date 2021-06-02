@@ -24,58 +24,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // const { getGlobalLanguage, getScopeCount, getGlobalCount } = selectors;
 
 const {
-  getGlobalLanguage,
-  getScopeCount,
-  getGlobalCount
+  getActionLog,
+  getGlobalLanguage
 } = _reducer__WEBPACK_IMPORTED_MODULE_2__.selectors;
 const {
   updateScopeCount,
   updateGlobalCount
 } = _reducer__WEBPACK_IMPORTED_MODULE_2__.actions;
 
+const printActionLog = actionLog => {
+  return actionLog.map((action, index) => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: `${index}-action`
+    }, index + 1, ": ", action);
+  });
+};
+
 const MFE2 = () => {
-  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  // const dispatch = useDispatch();
   const globalLanguage = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getGlobalLanguage);
-  const scopeCount = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getScopeCount);
-  const globalCount = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getGlobalCount);
-  const [countUpdateValue, setCountUpdateValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-
-  const onScopeIncrement = () => dispatch(updateScopeCount(parseInt(countUpdateValue)));
-
-  const onScopeDecrement = () => dispatch(updateScopeCount(parseInt(-countUpdateValue)));
-
-  const onGlobalIncrement = () => dispatch(updateGlobalCount(parseInt(countUpdateValue)));
-
-  const onGlobalDecrement = () => dispatch(updateGlobalCount(parseInt(-countUpdateValue)));
-
-  const changeCountUpdateValue = value => setCountUpdateValue(value);
+  const actionLog = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getActionLog); // const scopeCount = useSelector(getScopeCount);
+  // const globalCount = useSelector(getGlobalCount);
+  // const [countUpdateValue, setCountUpdateValue] = useState(1);
+  // const onScopeIncrement = () => dispatch(updateScopeCount(parseInt(countUpdateValue)));
+  // const onScopeDecrement = () =>  dispatch(updateScopeCount(parseInt(-countUpdateValue)));
+  // const onGlobalIncrement = () => dispatch(updateGlobalCount(parseInt(countUpdateValue)));
+  // const onGlobalDecrement = () =>  dispatch(updateGlobalCount(parseInt(-countUpdateValue)));
+  // const changeCountUpdateValue = value => setCountUpdateValue(value);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       marginTop: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.StyledTitle, null, _constants_js__WEBPACK_IMPORTED_MODULE_4__.default[globalLanguage]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.CountUpdateValueContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.StyledLabel, {
-    htmlFor: "count-update-value"
-  }, "Update Count By:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.StyledInput, {
-    type: "number",
-    id: "count-update-value",
-    onChange: e => changeCountUpdateValue(e.currentTarget.value),
-    value: countUpdateValue
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter_index_jsx__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Global Counter for MFE2",
-    count: globalCount,
-    onIncrement: onGlobalIncrement,
-    onDecrement: onGlobalDecrement,
-    themeColor: "blue"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter_index_jsx__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Counter for MFE2 Scope",
-    count: scopeCount,
-    onIncrement: onScopeIncrement,
-    onDecrement: onScopeDecrement,
-    themeColor: "red"
-  }));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.StyledTitle, null, _constants_js__WEBPACK_IMPORTED_MODULE_4__.default[globalLanguage]), printActionLog(actionLog));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MFE2);
@@ -218,8 +202,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const UPDATE_SCOPE_COUNT = 'MFE2/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
+const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 const initialState = {
-  actionLog: {}
+  actionLogForCount: [],
+  language: 'en'
 };
 const mfeScope = 'mfe2';
 const actions = {
@@ -234,22 +220,34 @@ const actions = {
 };
 
 const reducer = (state = initialState, action) => {
-  if (action.type.startsWith('GLOBAL/') || action.type.startsWith('MFE2/')) {
-    const existingLogForActionType = state.actionLog[action.type] || [];
-    return { ...state,
-      actionLog: { ...state.actionLog,
-        [action.type]: [...existingLogForActionType, action.payload]
-      }
-    };
-  }
+  switch (action.type) {
+    case UPDATE_GLOBAL_COUNT:
+      const newState = { ...state
+      };
 
-  return state;
+      if (action.payload === 1) {
+        newState.actionLogForCount.push('Increment occured');
+      } else {
+        newState.actionLogForCount.push("Decrement occured");
+      }
+
+      return newState;
+
+    case SELECT_GLOBAL_LANGUAGE:
+      return { ...state,
+        language: action.payload
+      };
+
+    default:
+      return state;
+  }
 };
 
 const selectors = {
-  getGlobalLanguage: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processGlobalLanguageActions)(state[mfeScope].actionLog),
-  getScopeCount: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processScopeCountActions)(state[mfeScope].actionLog),
-  getGlobalCount: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processGlobalCountActions)(state[mfeScope].actionLog)
+  getGlobalLanguage: state => state[mfeScope].language,
+  getActionLog: state => state[mfeScope].actionLogForCount // getScopeCount: (state) => processScopeCountActions(state[mfeScope].actionLog),
+  // getGlobalCount: (state) => processGlobalCountActions(state[mfeScope].actionLog)
+
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);
 

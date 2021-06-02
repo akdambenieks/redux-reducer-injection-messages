@@ -17,11 +17,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         globalCount: state.globalCount + action.payload
       }
-    case UPDATE_SCOPE_COUNT:
-      return {
-        ...state,
-        scopeCount: state.scopeCount + action.payload
-      }
+    // case UPDATE_SCOPE_COUNT:
+    //   return {
+    //     ...state,
+    //     scopeCount: state.scopeCount + action.payload
+    //   }
     case SELECT_GLOBAL_LANGUAGE:
       return {
         ...state,

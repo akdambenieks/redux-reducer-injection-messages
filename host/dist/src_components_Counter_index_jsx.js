@@ -19,7 +19,6 @@ __webpack_require__.r(__webpack_exports__);
 
 const Counter = ({
   title,
-  count,
   onIncrement,
   onDecrement,
   themeColor
@@ -29,7 +28,7 @@ const Counter = ({
   }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
     onClick: () => onIncrement(),
     themeColor: themeColor
-  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterCount, null, count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
+  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
     onClick: () => onDecrement(),
     themeColor: themeColor
   }, "-")));
@@ -60,14 +59,10 @@ __webpack_require__.r(__webpack_exports__);
 const CounterButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().button)`
   font-size: 32px;
   padding: 4px 16px;
-  background-color: white;
   text-decoration: none;
   font-weight: 500;
-  color: ${({
-  themeColor
-}) => themeColor};
-  border: solid 1px gainsboro;
-  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 30px;
 `;
 const CounterContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
   display: flex;
