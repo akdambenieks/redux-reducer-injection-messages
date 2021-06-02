@@ -1,1 +1,1 @@
-alert('this is only a remote');
+import('./bootstrap');

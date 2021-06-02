@@ -1,19 +1,19 @@
 import { combineReducers, createStore, compose } from 'redux';
 
-export const SELECT_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
+export const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 
 const hostScope = 'host';
 
 const initialState = {
-  language: 'en',
+  globalLanguage: 'en',
 };
 
 const hostReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SELECT_LANGUAGE: {
+    case SELECT_GLOBAL_LANGUAGE: {
       return {
         ...state,
-        language: action.payload,
+        globalLanguage: action.payload,
       };
     }
     default: {
@@ -30,7 +30,7 @@ const staticReducers = {
  * Cf. redux docs:
  * https://redux.js.org/recipes/code-splitting/#defining-an-injectreducer-function
  */
-export default function configureStore(initialState) {
+export default function configureStore() {
   const composeEnhancers =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
@@ -42,7 +42,6 @@ export default function configureStore(initialState) {
   store.asyncReducers = {};
 
   store.injectReducers = (reducers) => {
-    console.log('Injecting Reducers');
     reducers.map(({key, reducer}) => {
       store.asyncReducers[key] = reducer;
     })
@@ -63,11 +62,11 @@ export const store = configureStore();
 
 export const actions = {
   selectLanguage: (language) => ({
-    type: SELECT_LANGUAGE,
+    type: SELECT_GLOBAL_LANGUAGE,
     payload: language
   })
 }
 
 export const selectors = {
-  getLanguage: (state) => state[hostScope].language
+  getLanguage: (state) => state[hostScope].globalLanguage
 }

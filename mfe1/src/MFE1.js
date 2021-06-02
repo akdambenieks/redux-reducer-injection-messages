@@ -1,54 +1,34 @@
-import React, { useEffect } from 'react';
-import { Provider, useSelector, useDispatch } from 'react-redux';
-import /*reducer, */{
-  // mfeScope,
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
   selectors,
   actions
 } from './reducer';
 import StyledTitle from './styled.jsx';
 import GREETING from './constants.js';
-import Counter from 'host/Counter';
+import Counter from './components/Counter/index.jsx';
 
-const { getCount, getGlobalCount, getGlobalLanguage } = selectors;
-const { updateCount, updateGlobalCount } = actions;
+const { getGlobalCount, getGlobalLanguage, getScopeCount } = selectors;
+const { updateGlobalCount, updateScopeCount } = actions;
 
 const MFE1 = () => {
   const dispatch = useDispatch();
-  const language = useSelector((state) => getGlobalLanguage(state));
-  const count = useSelector((state) => getCount(state));
+  const globalLanguage = useSelector((state) => getGlobalLanguage(state));
   const globalCount = useSelector(getGlobalCount);
-
-  const onIncrement = () => dispatch(updateCount(1));
-  const onDecrement = () =>  dispatch(updateCount(-1));
+  const scopeCount = useSelector(getScopeCount);
   const onGlobalIncrement = () => dispatch(updateGlobalCount(1));
   const onGlobalDecrement = () =>  dispatch(updateGlobalCount(-1));
+  const onScopeIncrement = () => dispatch(updateScopeCount(1));
+  const onScopeDecrement = () =>  dispatch(updateScopeCount(-1));
 
+  // NOTE: This MFE doesn't have it's own provider/store I think that we still need to pass in the store from the host as an optional prop with the default store being generated locally
   return (
     <div style={{ marginTop: '10px' }}>
-      <StyledTitle>{GREETING[language]}</StyledTitle>
-      <Counter title="MFE1 Counter" count={count} onIncrement={onIncrement} onDecrement={onDecrement} themeColor="green"/>
-      <Counter title="Host Counter from MFE1" count={globalCount} onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue"/>
-
+      <StyledTitle>{GREETING[globalLanguage]}</StyledTitle>
+      <Counter title="Global Counter for MFE1" count={globalCount} onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue"/>
+      <Counter title="Counter for MFE1 Scope" count={scopeCount} onIncrement={onScopeIncrement} onDecrement={onScopeDecrement} themeColor="green"/>
     </div>
   );
 };
 
-const MFE1Wrapper = (/*props*/) => {
-  // const { store } = props;
-  useEffect(() => {
-    // store.injectReducer(mfeScope, reducer);
-    console.log('Mounting MFE1');
-    return () => {
-      console.log('Unmounting MFE1');
-      // store.ejectReducer(mfeScope);
-    }
-  }, []);
-
-  return (
-    // <Provider store={store || {}}>
-      <MFE1 />
-    // </Provider>
-  );
-};
-
-export default MFE1Wrapper;
+export default MFE1;

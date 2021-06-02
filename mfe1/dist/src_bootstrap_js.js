@@ -1,8 +1,8 @@
-(self["webpackChunk_redux_reducer_injection_mfe2"] = self["webpackChunk_redux_reducer_injection_mfe2"] || []).push([["src_MFE2_js"],{
+(self["webpackChunk_redux_reducer_injection_mfe1"] = self["webpackChunk_redux_reducer_injection_mfe1"] || []).push([["src_bootstrap_js"],{
 
-/***/ "./src/MFE2.js":
+/***/ "./src/MFE1.js":
 /*!*********************!*\
-  !*** ./src/MFE2.js ***!
+  !*** ./src/MFE1.js ***!
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -26,59 +26,82 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const {
+  getGlobalCount,
   getGlobalLanguage,
-  getScopeCount,
-  getGlobalCount
+  getScopeCount
 } = _reducer__WEBPACK_IMPORTED_MODULE_2__.selectors;
 const {
-  updateScopeCount,
-  updateGlobalCount
+  updateGlobalCount,
+  updateScopeCount
 } = _reducer__WEBPACK_IMPORTED_MODULE_2__.actions;
 
-const MFE2 = () => {
+const MFE1 = () => {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const globalLanguage = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getGlobalLanguage);
-  const scopeCount = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getScopeCount);
+  const globalLanguage = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getGlobalLanguage(state));
   const globalCount = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getGlobalCount);
-  const [countUpdateValue, setCountUpdateValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const scopeCount = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getScopeCount);
 
-  const onScopeIncrement = () => dispatch(updateScopeCount(parseInt(countUpdateValue)));
+  const onGlobalIncrement = () => dispatch(updateGlobalCount(1));
 
-  const onScopeDecrement = () => dispatch(updateScopeCount(parseInt(-countUpdateValue)));
+  const onGlobalDecrement = () => dispatch(updateGlobalCount(-1));
 
-  const onGlobalIncrement = () => dispatch(updateGlobalCount(parseInt(countUpdateValue)));
+  const onScopeIncrement = () => dispatch(updateScopeCount(1));
 
-  const onGlobalDecrement = () => dispatch(updateGlobalCount(parseInt(-countUpdateValue)));
+  const onScopeDecrement = () => dispatch(updateScopeCount(-1)); // NOTE: This MFE doesn't have it's own provider/store I think that we still need to pass in the store from the host as an optional prop with the default store being generated locally
 
-  const changeCountUpdateValue = value => setCountUpdateValue(value);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       marginTop: '10px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.StyledTitle, null, _constants_js__WEBPACK_IMPORTED_MODULE_4__.default[globalLanguage]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.CountUpdateValueContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.StyledLabel, {
-    htmlFor: "count-update-value"
-  }, "Update Count By:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.StyledInput, {
-    type: "number",
-    id: "count-update-value",
-    onChange: e => changeCountUpdateValue(e.currentTarget.value),
-    value: countUpdateValue
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter_index_jsx__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Global Counter for MFE2",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants_js__WEBPACK_IMPORTED_MODULE_4__.default[globalLanguage]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter_index_jsx__WEBPACK_IMPORTED_MODULE_5__.default, {
+    title: "Global Counter for MFE1",
     count: globalCount,
     onIncrement: onGlobalIncrement,
     onDecrement: onGlobalDecrement,
     themeColor: "blue"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter_index_jsx__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Counter for MFE2 Scope",
+    title: "Counter for MFE1 Scope",
     count: scopeCount,
     onIncrement: onScopeIncrement,
     onDecrement: onScopeDecrement,
-    themeColor: "red"
+    themeColor: "green"
   }));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MFE2);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MFE1);
+
+/***/ }),
+
+/***/ "./src/bootstrap.js":
+/*!**************************!*\
+  !*** ./src/bootstrap.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "webpack/sharing/consume/default/react-dom/react-dom?2b58");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./src/store.js");
+/* harmony import */ var _MFE1__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MFE1 */ "./src/MFE1.js");
+
+
+
+
+
+
+const App = () => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__.Provider, {
+    store: _store__WEBPACK_IMPORTED_MODULE_3__.default
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MFE1__WEBPACK_IMPORTED_MODULE_4__.default, null));
+};
+
+react_dom__WEBPACK_IMPORTED_MODULE_2___default().render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null), document.getElementById('root'));
 
 /***/ }),
 
@@ -194,8 +217,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  en: 'Welcome to MFE2!',
-  fr: 'Bienvenue a MFE2!'
+  en: 'Welcome to MFE1!',
+  fr: 'Bienvenue a MFE1!'
 });
 
 /***/ }),
@@ -210,18 +233,42 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "mfeScope": () => (/* binding */ mfeScope),
-/* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "selectors": () => (/* binding */ selectors),
+/* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./src/utils.js");
-
-const UPDATE_SCOPE_COUNT = 'MFE2/UPDATE_COUNT';
+const UPDATE_SCOPE_COUNT = 'MFE1/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
+const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
+const mfeScope = 'mfe1';
 const initialState = {
-  actionLog: {}
+  globalLanguage: 'en',
+  globalCount: 0,
+  scopeCount: 0
 };
-const mfeScope = 'mfe2';
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case UPDATE_GLOBAL_COUNT:
+      return { ...state,
+        globalCount: state.globalCount + action.payload
+      };
+
+    case UPDATE_SCOPE_COUNT:
+      return { ...state,
+        scopeCount: state.scopeCount + action.payload
+      };
+
+    case SELECT_GLOBAL_LANGUAGE:
+      return { ...state,
+        globalLanguage: action.payload
+      };
+
+    default:
+      return state;
+  }
+};
+
 const actions = {
   updateScopeCount: byValue => ({
     type: UPDATE_SCOPE_COUNT,
@@ -232,26 +279,34 @@ const actions = {
     payload: byValue
   })
 };
-
-const reducer = (state = initialState, action) => {
-  if (action.type.startsWith('GLOBAL/') || action.type.startsWith('MFE2/')) {
-    const existingLogForActionType = state.actionLog[action.type] || [];
-    return { ...state,
-      actionLog: { ...state.actionLog,
-        [action.type]: [...existingLogForActionType, action.payload]
-      }
-    };
-  }
-
-  return state;
-};
-
 const selectors = {
-  getGlobalLanguage: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processGlobalLanguageActions)(state[mfeScope].actionLog),
-  getScopeCount: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processScopeCountActions)(state[mfeScope].actionLog),
-  getGlobalCount: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processGlobalCountActions)(state[mfeScope].actionLog)
+  getGlobalLanguage: state => state[mfeScope] ? state[mfeScope].globalLanguage : initialState.globalLanguage,
+  getGlobalCount: state => state[mfeScope] ? state[mfeScope].globalCount : initialState.globalCount,
+  getScopeCount: state => state[mfeScope] ? state[mfeScope].scopeCount : initialState.scopeCount
 };
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);
+
+/***/ }),
+
+/***/ "./src/store.js":
+/*!**********************!*\
+  !*** ./src/store.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./reducer */ "./src/reducer.js");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,redux__WEBPACK_IMPORTED_MODULE_1__.createStore)((0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
+  mfe1: _reducer__WEBPACK_IMPORTED_MODULE_0__.default
+})));
 
 /***/ }),
 
@@ -264,79 +319,18 @@ const selectors = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "StyledTitle": () => (/* binding */ StyledTitle),
-/* harmony export */   "CountUpdateValueContainer": () => (/* binding */ CountUpdateValueContainer),
-/* harmony export */   "StyledLabel": () => (/* binding */ StyledLabel),
-/* harmony export */   "StyledInput": () => (/* binding */ StyledInput)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
 
-const StyledTitle = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().h1)`
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((styled_components__WEBPACK_IMPORTED_MODULE_0___default().h1)`
   font-size: 48px;
   font-weight: 100;
   font-family: Arial, Helvetica, sans-serif !important;
-`;
-const CountUpdateValueContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 48px;
-  align-items: center;
-  justify-content: center;
-`;
-const StyledLabel = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().label)`
-  font-size: 24px;
-  color: red;
-  font-family: Arial, Helvetica, sans-serif !important;
-  padding-bottom: 16px;
-`;
-const StyledInput = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().input)`
-  padding: 4px 8px;
-  font-size: 32px;
-  border: solid 1px gainsboro;
-  border-radius: 8px;
-  font-family: Arial, Helvetica, sans-serif !important;
-  text-align: center;
-  width: 100px;
-`;
-
-/***/ }),
-
-/***/ "./src/utils.js":
-/*!**********************!*\
-  !*** ./src/utils.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "processGlobalLanguageActions": () => (/* binding */ processGlobalLanguageActions),
-/* harmony export */   "processGlobalCountActions": () => (/* binding */ processGlobalCountActions),
-/* harmony export */   "processScopeCountActions": () => (/* binding */ processScopeCountActions)
-/* harmony export */ });
-const processGlobalLanguageActions = actions => {
-  const globalLanguageActions = actions['GLOBAL/SELECT_LANGUAGE'] || [];
-  return globalLanguageActions[actions.length - 1] || 'en';
-};
-
-const processGlobalCountActions = actions => {
-  const globalCountActions = actions['GLOBAL/UPDATE_COUNT'] || [];
-  return globalCountActions.reduce((acc, action) => {
-    return acc + action;
-  }, 0);
-};
-
-const processScopeCountActions = actions => {
-  const scopeCountActions = actions['MFE2/UPDATE_COUNT'] || [];
-  return scopeCountActions.reduce((acc, action) => {
-    return acc + action;
-  }, 0);
-};
-
-
+`);
 
 /***/ })
 
 }]);
-//# sourceMappingURL=src_MFE2_js.js.map
+//# sourceMappingURL=src_bootstrap_js.js.map

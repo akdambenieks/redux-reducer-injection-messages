@@ -473,7 +473,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "SELECT_LANGUAGE": () => (/* binding */ SELECT_LANGUAGE),
+/* harmony export */   "SELECT_GLOBAL_LANGUAGE": () => (/* binding */ SELECT_GLOBAL_LANGUAGE),
 /* harmony export */   "default": () => (/* binding */ configureStore),
 /* harmony export */   "store": () => (/* binding */ store),
 /* harmony export */   "actions": () => (/* binding */ actions),
@@ -482,18 +482,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "webpack/sharing/consume/default/redux/redux");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
 
-const SELECT_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
+const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 const hostScope = 'host';
 const initialState = {
-  language: 'en'
+  globalLanguage: 'en'
 };
 
 const hostReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SELECT_LANGUAGE:
+    case SELECT_GLOBAL_LANGUAGE:
       {
         return { ...state,
-          language: action.payload
+          globalLanguage: action.payload
         };
       }
 
@@ -512,14 +512,13 @@ const staticReducers = {
  * https://redux.js.org/recipes/code-splitting/#defining-an-injectreducer-function
  */
 
-function configureStore(initialState) {
+function configureStore() {
   const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : redux__WEBPACK_IMPORTED_MODULE_0__.compose;
   const enhancer = composeEnhancers();
   const store = (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(createReducer(), enhancer);
   store.asyncReducers = {};
 
   store.injectReducers = reducers => {
-    console.log('Injecting Reducers');
     reducers.map(({
       key,
       reducer
@@ -541,12 +540,12 @@ function createReducer(asyncReducers) {
 const store = configureStore();
 const actions = {
   selectLanguage: language => ({
-    type: SELECT_LANGUAGE,
+    type: SELECT_GLOBAL_LANGUAGE,
     payload: language
   })
 };
 const selectors = {
-  getLanguage: state => state[hostScope].language
+  getLanguage: state => state[hostScope].globalLanguage
 };
 
 /***/ })

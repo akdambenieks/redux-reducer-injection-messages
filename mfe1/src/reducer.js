@@ -1,39 +1,31 @@
-// import processMessageQueue from './utils';
-
-const UPDATE_COUNT = 'MFE1/UPDATE_COUNT';
+const UPDATE_SCOPE_COUNT = 'MFE1/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
-const PROCESS_MESSAGE_QUEUE = 'MFE1/PROCESS_MESSAGE_QUEUE';
-// const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
+const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE'
 
-const hostScope = 'host';
 export const mfeScope = 'mfe1';
 
 const initialState = {
-  language: 'en',
-  count: 0,
-  globalCount: 0
+  globalLanguage: 'en',
+  globalCount: 0,
+  scopeCount: 0
 };
-
-const globalDefault = {
-  language: 'en',
-  count: 0
-}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case PROCESS_MESSAGE_QUEUE:
-      console.log('message queue from host: ', action.payload);
-      // const stateUpdates = processMessageQueue(payload);
-      return state
     case UPDATE_GLOBAL_COUNT:
       return {
         ...state,
-        globalCount: state.count + action.payload
+        globalCount: state.globalCount + action.payload
       }
-    case UPDATE_COUNT:
+    case UPDATE_SCOPE_COUNT:
       return {
         ...state,
-        count: state.count + action.payload
+        scopeCount: state.scopeCount + action.payload
+      }
+    case SELECT_GLOBAL_LANGUAGE:
+      return {
+        ...state,
+        globalLanguage: action.payload
       }
     default:
       return state
@@ -41,8 +33,8 @@ const reducer = (state = initialState, action) => {
 };
 
 const actions = {
-  updateCount: (byValue) => ({
-    type: UPDATE_COUNT,
+  updateScopeCount: (byValue) => ({
+    type: UPDATE_SCOPE_COUNT,
     payload: byValue
   }),
   updateGlobalCount: (byValue) => ({
@@ -52,9 +44,9 @@ const actions = {
 }
 
 const selectors = {
-  getGlobalLanguage: (state) => state[hostScope] ? state[hostScope].language : globalDefault.language,
-  getGlobalCount: (state) => state[mfeScope] ? state[mfeScope].count : initialState.globalCount,
-  getCount: (state) => state[mfeScope] ? state[mfeScope].count : initialState.count
+  getGlobalLanguage: (state) => state[mfeScope] ? state[mfeScope].globalLanguage : initialState.globalLanguage,
+  getGlobalCount: (state) => state[mfeScope] ? state[mfeScope].globalCount : initialState.globalCount,
+  getScopeCount: (state) => state[mfeScope] ? state[mfeScope].scopeCount : initialState.scopeCount
 }
 
 export { selectors, actions };

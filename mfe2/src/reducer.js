@@ -1,23 +1,17 @@
-const UPDATE_COUNT = 'MFE2/UPDATE_COUNT';
+import { processGlobalLanguageActions, processGlobalCountActions, processScopeCountActions } from './utils.js';
+
+const UPDATE_SCOPE_COUNT = 'MFE2/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
-const PROCESS_MESSAGE_QUEUE = 'MFE2/PROCESS_MESSAGE_QUEUE';
 
 const initialState = {
-  count: 0,
-  globalCount: 0
+  actionLog: {}
 };
 
-const globalDefault = {
-  language: 'en',
-  count: 0
-}
-
 export const mfeScope = 'mfe2';
-const hostScope = 'host';
 
 export const actions = {
-  updateCount: (byValue) => ({
-    type: UPDATE_COUNT,
+  updateScopeCount: (byValue) => ({
+    type: UPDATE_SCOPE_COUNT,
     payload: byValue
   }),
   updateGlobalCount: (byValue) => ({
@@ -28,29 +22,20 @@ export const actions = {
 
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case PROCESS_MESSAGE_QUEUE:
-      console.log('message queue: ', action.payload);
-      return state
-    case UPDATE_GLOBAL_COUNT:
-      return {
-        ...state,
-        globalCount: state.count + action.payload
-      }
-    case UPDATE_COUNT: {
-      return {
-        ...state,
-        count: state.count + action.payload
-      }
+  if (action.type.startsWith('GLOBAL/') || action.type.startsWith('MFE2/')) {
+    const existingLogForActionType = state.actionLog[action.type] || [];
+    return {
+      ...state,
+      actionLog: {...state.actionLog, [action.type]: [...existingLogForActionType, action.payload]}
     }
   }
   return state;
 };
 
 export const selectors = {
-  getGlobalLanguage: (state) => state[hostScope] ? state[hostScope].language : globalDefault.language,
-  getCount: (state) => state[mfeScope] ? state[mfeScope].count : initialState.count,
-  getGlobalCount: (state) => state[mfeScope] ? state[mfeScope].count : initialState.globalCount
+  getGlobalLanguage: (state) => processGlobalLanguageActions(state[mfeScope].actionLog),
+  getScopeCount: (state) => processScopeCountActions(state[mfeScope].actionLog),
+  getGlobalCount: (state) => processGlobalCountActions(state[mfeScope].actionLog)
 }
 
 export default reducer;

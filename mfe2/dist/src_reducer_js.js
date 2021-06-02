@@ -14,22 +14,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "selectors": () => (/* binding */ selectors),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-const UPDATE_COUNT = 'MFE2/UPDATE_COUNT';
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./src/utils.js");
+
+const UPDATE_SCOPE_COUNT = 'MFE2/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
-const PROCESS_MESSAGE_QUEUE = 'MFE2/PROCESS_MESSAGE_QUEUE';
 const initialState = {
-  count: 0,
-  globalCount: 0
-};
-const globalDefault = {
-  language: 'en',
-  count: 0
+  actionLog: {}
 };
 const mfeScope = 'mfe2';
-const hostScope = 'host';
 const actions = {
-  updateCount: byValue => ({
-    type: UPDATE_COUNT,
+  updateScopeCount: byValue => ({
+    type: UPDATE_SCOPE_COUNT,
     payload: byValue
   }),
   updateGlobalCount: byValue => ({
@@ -39,33 +34,60 @@ const actions = {
 };
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case PROCESS_MESSAGE_QUEUE:
-      console.log('message queue: ', action.payload);
-      return state;
-
-    case UPDATE_GLOBAL_COUNT:
-      return { ...state,
-        globalCount: state.count + action.payload
-      };
-
-    case UPDATE_COUNT:
-      {
-        return { ...state,
-          count: state.count + action.payload
-        };
+  if (action.type.startsWith('GLOBAL/') || action.type.startsWith('MFE2/')) {
+    const existingLogForActionType = state.actionLog[action.type] || [];
+    return { ...state,
+      actionLog: { ...state.actionLog,
+        [action.type]: [...existingLogForActionType, action.payload]
       }
+    };
   }
 
   return state;
 };
 
 const selectors = {
-  getGlobalLanguage: state => state[hostScope] ? state[hostScope].language : globalDefault.language,
-  getCount: state => state[mfeScope] ? state[mfeScope].count : initialState.count,
-  getGlobalCount: state => state[mfeScope] ? state[mfeScope].count : initialState.globalCount
+  getGlobalLanguage: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processGlobalLanguageActions)(state[mfeScope].actionLog),
+  getScopeCount: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processScopeCountActions)(state[mfeScope].actionLog),
+  getGlobalCount: state => (0,_utils_js__WEBPACK_IMPORTED_MODULE_0__.processGlobalCountActions)(state[mfeScope].actionLog)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);
+
+/***/ }),
+
+/***/ "./src/utils.js":
+/*!**********************!*\
+  !*** ./src/utils.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "processGlobalLanguageActions": () => (/* binding */ processGlobalLanguageActions),
+/* harmony export */   "processGlobalCountActions": () => (/* binding */ processGlobalCountActions),
+/* harmony export */   "processScopeCountActions": () => (/* binding */ processScopeCountActions)
+/* harmony export */ });
+const processGlobalLanguageActions = actions => {
+  const globalLanguageActions = actions['GLOBAL/SELECT_LANGUAGE'] || [];
+  return globalLanguageActions[actions.length - 1] || 'en';
+};
+
+const processGlobalCountActions = actions => {
+  const globalCountActions = actions['GLOBAL/UPDATE_COUNT'] || [];
+  return globalCountActions.reduce((acc, action) => {
+    return acc + action;
+  }, 0);
+};
+
+const processScopeCountActions = actions => {
+  const scopeCountActions = actions['MFE2/UPDATE_COUNT'] || [];
+  return scopeCountActions.reduce((acc, action) => {
+    return acc + action;
+  }, 0);
+};
+
+
 
 /***/ })
 
