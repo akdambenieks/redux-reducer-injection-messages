@@ -14,14 +14,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-const UPDATE_SCOPE_COUNT = 'MFE1/UPDATE_COUNT';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 const mfeScope = 'mfe1';
 const initialState = {
   globalLanguage: 'en',
-  globalCount: 0,
-  scopeCount: 0
+  globalCount: 0
 };
 
 const reducer = (state = initialState, action) => {
@@ -30,11 +28,6 @@ const reducer = (state = initialState, action) => {
       return { ...state,
         globalCount: state.globalCount + action.payload
       };
-    // case UPDATE_SCOPE_COUNT:
-    //   return {
-    //     ...state,
-    //     scopeCount: state.scopeCount + action.payload
-    //   }
 
     case SELECT_GLOBAL_LANGUAGE:
       return { ...state,
@@ -46,20 +39,10 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const actions = {
-  updateScopeCount: byValue => ({
-    type: UPDATE_SCOPE_COUNT,
-    payload: byValue
-  }),
-  updateGlobalCount: byValue => ({
-    type: UPDATE_GLOBAL_COUNT,
-    payload: byValue
-  })
-};
+const actions = {};
 const selectors = {
   getGlobalLanguage: state => state[mfeScope] ? state[mfeScope].globalLanguage : initialState.globalLanguage,
-  getGlobalCount: state => state[mfeScope] ? state[mfeScope].globalCount : initialState.globalCount,
-  getScopeCount: state => state[mfeScope] ? state[mfeScope].scopeCount : initialState.scopeCount
+  getGlobalCount: state => state[mfeScope] ? state[mfeScope].globalCount : initialState.globalCount
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);

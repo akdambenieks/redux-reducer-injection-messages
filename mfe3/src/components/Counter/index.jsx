@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { CounterContainer, CounterButton, CounterCount, CounterTitle, CounterWrapper } from './styled.jsx';
 
 const Counter = ({ title, count, onIncrement, onDecrement, themeColor }) => {
@@ -12,6 +13,22 @@ const Counter = ({ title, count, onIncrement, onDecrement, themeColor }) => {
       </CounterContainer>
     </CounterWrapper>
   )
+}
+
+Counter.propTypes = {
+  title: PropTypes.string,
+  count: PropTypes.number,
+  onIncrement: PropTypes.func,
+  onDecrement: PropTypes.func,
+  themeColor: PropTypes.string,
+}
+
+Counter.defaultProps = {
+  title: '',
+  count: 0,
+  onIncrement: () => console.log('Increment Count'),
+  onDecrement: () => console.log('Decrement Count'),
+  themeColor: 'blue',
 }
 
 export default Counter;

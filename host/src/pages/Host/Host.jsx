@@ -16,7 +16,7 @@ export default () => {
   return (
     <>
       <StyledTitle>{GREETING[language]}</StyledTitle>
-      <Counter title="Global Counter for MFE1" onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue"/>
+      <Counter title="Dispatch Global Counter Actions" onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue"/>
     </>
   )
 };

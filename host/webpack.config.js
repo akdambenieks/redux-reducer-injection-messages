@@ -45,6 +45,7 @@ module.exports = {
       remotes: {
         mfe1: 'mfe1@http://localhost:3002/mfe1.js',
         mfe2: 'mfe2@http://localhost:3003/mfe2.js',
+        mfe3: 'mfe3@http://localhost:3004/mfe3.js',
       },
       shared: {
         ...deps,

@@ -1,5 +1,6 @@
 import { combineReducers, createStore, compose } from 'redux';
 
+// global actions are namespaced with the 'GLOBAL/' prefix to expose them to other MFE's
 export const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 
@@ -42,6 +43,7 @@ export default function configureStore() {
 
   store.asyncReducers = {};
 
+  // Code for extending the store to allow injection of reducers from MFEs
   store.injectReducers = (reducers) => {
     reducers.map(({key, reducer}) => {
       store.asyncReducers[key] = reducer;

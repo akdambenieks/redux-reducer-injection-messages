@@ -93,7 +93,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CounterButton": () => (/* binding */ CounterButton),
 /* harmony export */   "CounterContainer": () => (/* binding */ CounterContainer),
-/* harmony export */   "CounterCount": () => (/* binding */ CounterCount),
 /* harmony export */   "CounterTitle": () => (/* binding */ CounterTitle),
 /* harmony export */   "CounterWrapper": () => (/* binding */ CounterWrapper)
 /* harmony export */ });
@@ -114,12 +113,6 @@ const CounterContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default
   align-items: center;
   justify-content: start;
   padding: 16px 0px;
-`;
-const CounterCount = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  margin: 0px 16px;
-  font-size: 48px;
-  min-width: 80px;
-  text-align: center;
 `;
 const CounterTitle = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
   display: inline;
@@ -317,7 +310,10 @@ const Navigation = () => {
   }, "MFE1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.StyledLink, {
     to: "/mfe2",
     exact: true
-  }, "MFE2"));
+  }, "MFE2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.StyledLink, {
+    to: "/mfe3",
+    exact: true
+  }, "MFE3"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Navigation);
@@ -405,7 +401,7 @@ const {
   const onGlobalDecrement = () => dispatch(updateGlobalCount(-1));
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants__WEBPACK_IMPORTED_MODULE_4__.default[language]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Global Counter for MFE1",
+    title: "Dispatch Global Counter Actions",
     onIncrement: onGlobalIncrement,
     onDecrement: onGlobalDecrement,
     themeColor: "blue"
@@ -508,10 +504,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mfe1_reducer__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mfe1_reducer__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var mfe2_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! mfe2/reducer */ "webpack/container/remote/mfe2/reducer");
 /* harmony import */ var mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(mfe2_reducer__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var mfe3_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! mfe3/reducer */ "webpack/container/remote/mfe3/reducer");
+/* harmony import */ var mfe3_reducer__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(mfe3_reducer__WEBPACK_IMPORTED_MODULE_5__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /* eslint-disable react/jsx-props-no-spreading */
 
+
+ // Note: no lazt loading of reducers since they need to be present from the outset
 
 
 
@@ -526,6 +526,9 @@ const Routes = ({
   }, {
     key: 'mfe2',
     reducer: (mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default())
+  }, {
+    key: 'mfe3',
+    reducer: (mfe3_reducer__WEBPACK_IMPORTED_MODULE_5___default())
   }];
   store.injectReducers(mfeReducerArray);
   const elements = _route_config__WEBPACK_IMPORTED_MODULE_2__.default.map(route => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Route, _extends({
@@ -556,6 +559,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mfe2/MFE2 */ "webpack/container/remote/mfe2/MFE2");
 /* harmony import */ var mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var mfe3_MFE3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mfe3/MFE3 */ "webpack/container/remote/mfe3/MFE3");
+/* harmony import */ var mfe3_MFE3__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mfe3_MFE3__WEBPACK_IMPORTED_MODULE_3__);
+ // Note: no more lazy loading of components - but does this have to be the case?
+
 
 
 
@@ -566,6 +573,10 @@ __webpack_require__.r(__webpack_exports__);
 }, {
   path: '/mfe2',
   component: (mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2___default()),
+  exact: false
+}, {
+  path: '/mfe3',
+  component: (mfe3_MFE3__WEBPACK_IMPORTED_MODULE_3___default()),
   exact: false
 }, {
   path: '/',
@@ -592,6 +603,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "webpack/sharing/consume/default/redux/redux");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
+ // global actions are namespaced with the 'GLOBAL/' prefix to expose them to other MFE's
 
 const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
@@ -628,7 +640,7 @@ function configureStore() {
   const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : redux__WEBPACK_IMPORTED_MODULE_0__.compose;
   const enhancer = composeEnhancers();
   const store = (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(createReducer(), enhancer);
-  store.asyncReducers = {};
+  store.asyncReducers = {}; // Code for extending the store to allow injection of reducers from MFEs
 
   store.injectReducers = reducers => {
     reducers.map(({

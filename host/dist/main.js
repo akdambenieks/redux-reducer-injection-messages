@@ -57,6 +57,30 @@ module.exports = new Promise((resolve, reject) => {
 	}, "mfe2");
 }).then(() => (mfe2));
 
+/***/ }),
+
+/***/ "webpack/container/reference/mfe3":
+/*!*****************************************************!*\
+  !*** external "mfe3@http://localhost:3004/mfe3.js" ***!
+  \*****************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+var __webpack_error__ = new Error();
+module.exports = new Promise((resolve, reject) => {
+	if(typeof mfe3 !== "undefined") return resolve();
+	__webpack_require__.l("http://localhost:3004/mfe3.js", (event) => {
+		if(typeof mfe3 !== "undefined") return resolve();
+		var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+		var realSrc = event && event.target && event.target.src;
+		__webpack_error__.message = 'Loading script failed.\n(' + errorType + ': ' + realSrc + ')';
+		__webpack_error__.name = 'ScriptExternalLoadError';
+		__webpack_error__.type = errorType;
+		__webpack_error__.request = realSrc;
+		reject(__webpack_error__);
+	}, "mfe3");
+}).then(() => (mfe3));
+
 /***/ })
 
 /******/ 	});
@@ -218,8 +242,10 @@ module.exports = new Promise((resolve, reject) => {
 /******/ 			"src_bootstrap_js": [
 /******/ 				"webpack/container/remote/mfe1/MFE1",
 /******/ 				"webpack/container/remote/mfe2/MFE2",
+/******/ 				"webpack/container/remote/mfe3/MFE3",
 /******/ 				"webpack/container/remote/mfe1/reducer",
-/******/ 				"webpack/container/remote/mfe2/reducer"
+/******/ 				"webpack/container/remote/mfe2/reducer",
+/******/ 				"webpack/container/remote/mfe3/reducer"
 /******/ 			]
 /******/ 		};
 /******/ 		var idToExternalAndNameMapping = {
@@ -233,6 +259,11 @@ module.exports = new Promise((resolve, reject) => {
 /******/ 				"./MFE2",
 /******/ 				"webpack/container/reference/mfe2"
 /******/ 			],
+/******/ 			"webpack/container/remote/mfe3/MFE3": [
+/******/ 				"default",
+/******/ 				"./MFE3",
+/******/ 				"webpack/container/reference/mfe3"
+/******/ 			],
 /******/ 			"webpack/container/remote/mfe1/reducer": [
 /******/ 				"default",
 /******/ 				"./reducer",
@@ -242,6 +273,11 @@ module.exports = new Promise((resolve, reject) => {
 /******/ 				"default",
 /******/ 				"./reducer",
 /******/ 				"webpack/container/reference/mfe2"
+/******/ 			],
+/******/ 			"webpack/container/remote/mfe3/reducer": [
+/******/ 				"default",
+/******/ 				"./reducer",
+/******/ 				"webpack/container/reference/mfe3"
 /******/ 			]
 /******/ 		};
 /******/ 		__webpack_require__.f.remotes = (chunkId, promises) => {
@@ -336,6 +372,7 @@ module.exports = new Promise((resolve, reject) => {
 /******/ 					register("styled-components", "5.3.0", () => (Promise.all([__webpack_require__.e("vendors-node_modules_styled-components_dist_styled-components_browser_esm_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react-_7646")]).then(() => (() => (__webpack_require__(/*! ./node_modules/styled-components/dist/styled-components.browser.esm.js */ "./node_modules/styled-components/dist/styled-components.browser.esm.js"))))));
 /******/ 					initExternal("webpack/container/reference/mfe1");
 /******/ 					initExternal("webpack/container/reference/mfe2");
+/******/ 					initExternal("webpack/container/reference/mfe3");
 /******/ 				}
 /******/ 				break;
 /******/ 			}

@@ -49,7 +49,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CounterButton": () => (/* binding */ CounterButton),
 /* harmony export */   "CounterContainer": () => (/* binding */ CounterContainer),
-/* harmony export */   "CounterCount": () => (/* binding */ CounterCount),
 /* harmony export */   "CounterTitle": () => (/* binding */ CounterTitle),
 /* harmony export */   "CounterWrapper": () => (/* binding */ CounterWrapper)
 /* harmony export */ });
@@ -70,12 +69,6 @@ const CounterContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default
   align-items: center;
   justify-content: start;
   padding: 16px 0px;
-`;
-const CounterCount = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  margin: 0px 16px;
-  font-size: 48px;
-  min-width: 80px;
-  text-align: center;
 `;
 const CounterTitle = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
   display: inline;

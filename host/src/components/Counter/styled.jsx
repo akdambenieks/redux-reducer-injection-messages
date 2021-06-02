@@ -17,13 +17,6 @@ export const CounterContainer = styled.div`
   padding: 16px 0px;
 `
 
-export const CounterCount = styled.div`
-  margin: 0px 16px;
-  font-size: 48px;
-  min-width: 80px;
-  text-align: center;
-`
-
 export const CounterTitle = styled.div`
   display: inline;
   font-size: 24px;

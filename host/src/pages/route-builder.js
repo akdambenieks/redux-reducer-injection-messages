@@ -3,8 +3,10 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import config from './route-config';
+// Note: no lazt loading of reducers since they need to be present from the outset
 import mfe1reducer from 'mfe1/reducer';
 import mfe2reducer from 'mfe2/reducer';
+import mfe3reducer from 'mfe3/reducer';
 
 const Routes = ({ store }) => {
   const mfeReducerArray = [
@@ -15,6 +17,10 @@ const Routes = ({ store }) => {
     {
       key: 'mfe2',
       reducer: mfe2reducer
+    },
+    {
+      key: 'mfe3',
+      reducer: mfe3reducer
     }
   ]
   store.injectReducers(mfeReducerArray);
