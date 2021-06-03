@@ -1,8 +1,9 @@
-import Host from './Host';
-// Note: no more lazy loading of components - but does this have to be the case?
-import MFE1 from 'mfe1/MFE1';
-import MFE2 from 'mfe2/MFE2';
-import MFE3 from 'mfe3/MFE3';
+import { lazy } from 'react';
+
+const Host = lazy(() => import('./Host'));
+const MFE1 = lazy(() => import('mfe1/MFE1'));
+const MFE2 = lazy(() => import('mfe2/MFE2'));
+const MFE3 = lazy(() => import('mfe3/MFE3'));
 
 export default [
   {

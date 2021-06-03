@@ -1,22 +1,25 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectors, actions } from '../../store'
+import { useSelector } from 'react-redux';
+import { selectors } from '../../store'
 import StyledTitle from './styled';
 import GREETING from './constants';
-import Counter from '../../components/Counter'
 
 const { getLanguage } = selectors;
-const { updateGlobalCount } = actions;
 
 export default () => {
-  const dispatch = useDispatch();
   const language = useSelector(getLanguage);
-  const onGlobalIncrement = () => dispatch(updateGlobalCount(1));
-  const onGlobalDecrement = () =>  dispatch(updateGlobalCount(-1));
   return (
     <>
       <StyledTitle>{GREETING[language]}</StyledTitle>
-      <Counter title="Dispatch Global Counter Actions" onIncrement={onGlobalIncrement} onDecrement={onGlobalDecrement} themeColor="blue"/>
+      <h3>Host architecture:</h3>
+      <ul>
+        <li>Imports (via webpack module federation) reducers from the MFEs</li>
+        <li>Injects these into the host store at load time</li>
+        <li>Lazily imports (via webpack module federation) and loads react components from MFEs as they are mounted</li>
+        <li>Stores <code>language</code> in it's local store (scoped to <code>global</code>) for updating display of the language selector and greeting</li>
+        <li>Dispatches actions of type <code>GLOBAL/SELECT_LANGUAGE</code> with the selected language of type String as the payload</li>
+        <li>Host reducer is subscribed to actions of type <code>GLOBAL/SELECT_LANGUAGE</code> to update the global scoped store</li>
+      </ul>
     </>
   )
 };

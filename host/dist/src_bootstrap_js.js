@@ -44,94 +44,6 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default().render( /*#__PURE__*/react__WEB
 
 /***/ }),
 
-/***/ "./src/components/Counter/index.jsx":
-/*!******************************************!*\
-  !*** ./src/components/Counter/index.jsx ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled */ "./src/components/Counter/styled.jsx");
-
-
-
-const Counter = ({
-  title,
-  onIncrement,
-  onDecrement,
-  themeColor
-}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterTitle, {
-    themeColor: themeColor
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
-    onClick: () => onIncrement(),
-    themeColor: themeColor
-  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_1__.CounterButton, {
-    onClick: () => onDecrement(),
-    themeColor: themeColor
-  }, "-")));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Counter);
-
-/***/ }),
-
-/***/ "./src/components/Counter/styled.jsx":
-/*!*******************************************!*\
-  !*** ./src/components/Counter/styled.jsx ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CounterButton": () => (/* binding */ CounterButton),
-/* harmony export */   "CounterContainer": () => (/* binding */ CounterContainer),
-/* harmony export */   "CounterTitle": () => (/* binding */ CounterTitle),
-/* harmony export */   "CounterWrapper": () => (/* binding */ CounterWrapper)
-/* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
-
-const CounterButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().button)`
-  font-size: 32px;
-  padding: 4px 16px;
-  text-decoration: none;
-  font-weight: 500;
-  cursor: pointer;
-  margin-right: 30px;
-`;
-const CounterContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  padding: 16px 0px;
-`;
-const CounterTitle = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  display: inline;
-  font-size: 24px;
-  color: ${({
-  themeColor
-}) => themeColor};
-`;
-const CounterWrapper = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: middle;
-  font-family: Arial, Helvetica, sans-serif !important;
-  margin-bottom: 48px;
-`;
-
-/***/ }),
-
 /***/ "./src/components/Header/index.jsx":
 /*!*****************************************!*\
   !*** ./src/components/Header/index.jsx ***!
@@ -361,112 +273,6 @@ const NavigationContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___defa
 
 /***/ }),
 
-/***/ "./src/pages/Host/Host.jsx":
-/*!*********************************!*\
-  !*** ./src/pages/Host/Host.jsx ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store */ "./src/store.js");
-/* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styled */ "./src/pages/Host/styled.jsx");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./src/pages/Host/constants.js");
-/* harmony import */ var _components_Counter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Counter */ "./src/components/Counter/index.jsx");
-
-
-
-
-
-
-const {
-  getLanguage
-} = _store__WEBPACK_IMPORTED_MODULE_2__.selectors;
-const {
-  updateGlobalCount
-} = _store__WEBPACK_IMPORTED_MODULE_2__.actions;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
-  const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getLanguage);
-
-  const onGlobalIncrement = () => dispatch(updateGlobalCount(1));
-
-  const onGlobalDecrement = () => dispatch(updateGlobalCount(-1));
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants__WEBPACK_IMPORTED_MODULE_4__.default[language]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Dispatch Global Counter Actions",
-    onIncrement: onGlobalIncrement,
-    onDecrement: onGlobalDecrement,
-    themeColor: "blue"
-  }));
-});
-
-/***/ }),
-
-/***/ "./src/pages/Host/constants.js":
-/*!*************************************!*\
-  !*** ./src/pages/Host/constants.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  en: 'Welcome to Host!',
-  fr: 'Bienvenue a Host!'
-});
-
-/***/ }),
-
-/***/ "./src/pages/Host/index.js":
-/*!*********************************!*\
-  !*** ./src/pages/Host/index.js ***!
-  \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Host__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Host */ "./src/pages/Host/Host.jsx");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Host__WEBPACK_IMPORTED_MODULE_0__.default);
-
-/***/ }),
-
-/***/ "./src/pages/Host/styled.jsx":
-/*!***********************************!*\
-  !*** ./src/pages/Host/styled.jsx ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "webpack/sharing/consume/default/styled-components/styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((styled_components__WEBPACK_IMPORTED_MODULE_0___default().h1)`
-  font-size: 48px;
-  font-weight: 100;
-  font-family: Arial, Helvetica, sans-serif !important;
-`);
-
-/***/ }),
-
 /***/ "./src/pages/index.js":
 /*!****************************!*\
   !*** ./src/pages/index.js ***!
@@ -511,7 +317,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 /* eslint-disable react/jsx-props-no-spreading */
 
 
- // Note: no lazt loading of reducers since they need to be present from the outset
+ // Note: no lazy loading of reducers since they need to be present from the outset
 
 
 
@@ -521,13 +327,13 @@ const Routes = ({
   store
 }) => {
   const mfeReducerArray = [{
-    key: 'mfe1',
+    scope: mfe1_reducer__WEBPACK_IMPORTED_MODULE_3__.scope,
     reducer: (mfe1_reducer__WEBPACK_IMPORTED_MODULE_3___default())
   }, {
-    key: 'mfe2',
+    scope: mfe2_reducer__WEBPACK_IMPORTED_MODULE_4__.scope,
     reducer: (mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default())
   }, {
-    key: 'mfe3',
+    scope: mfe3_reducer__WEBPACK_IMPORTED_MODULE_5__.scope,
     reducer: (mfe3_reducer__WEBPACK_IMPORTED_MODULE_5___default())
   }];
   store.injectReducers(mfeReducerArray);
@@ -554,33 +360,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Host__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Host */ "./src/pages/Host/index.js");
-/* harmony import */ var mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mfe1/MFE1 */ "webpack/container/remote/mfe1/MFE1");
-/* harmony import */ var mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mfe2/MFE2 */ "webpack/container/remote/mfe2/MFE2");
-/* harmony import */ var mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var mfe3_MFE3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mfe3/MFE3 */ "webpack/container/remote/mfe3/MFE3");
-/* harmony import */ var mfe3_MFE3__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mfe3_MFE3__WEBPACK_IMPORTED_MODULE_3__);
- // Note: no more lazy loading of components - but does this have to be the case?
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "webpack/sharing/consume/default/react/react?2849");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
-
-
+const Host = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(() => __webpack_require__.e(/*! import() */ "src_pages_Host_index_js").then(__webpack_require__.bind(__webpack_require__, /*! ./Host */ "./src/pages/Host/index.js")));
+const MFE1 = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(() => __webpack_require__.e(/*! import() */ "webpack_container_remote_mfe1_MFE1").then(__webpack_require__.t.bind(__webpack_require__, /*! mfe1/MFE1 */ "webpack/container/remote/mfe1/MFE1", 23)));
+const MFE2 = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(() => __webpack_require__.e(/*! import() */ "webpack_container_remote_mfe2_MFE2").then(__webpack_require__.t.bind(__webpack_require__, /*! mfe2/MFE2 */ "webpack/container/remote/mfe2/MFE2", 23)));
+const MFE3 = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(() => __webpack_require__.e(/*! import() */ "webpack_container_remote_mfe3_MFE3").then(__webpack_require__.t.bind(__webpack_require__, /*! mfe3/MFE3 */ "webpack/container/remote/mfe3/MFE3", 23)));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/mfe1',
-  component: (mfe1_MFE1__WEBPACK_IMPORTED_MODULE_1___default()),
+  component: MFE1,
   exact: false
 }, {
   path: '/mfe2',
-  component: (mfe2_MFE2__WEBPACK_IMPORTED_MODULE_2___default()),
+  component: MFE2,
   exact: false
 }, {
   path: '/mfe3',
-  component: (mfe3_MFE3__WEBPACK_IMPORTED_MODULE_3___default()),
+  component: MFE3,
   exact: false
 }, {
   path: '/',
-  component: _Host__WEBPACK_IMPORTED_MODULE_0__.default,
+  component: Host,
   exact: true
 }]);
 
@@ -607,7 +408,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
-const hostScope = 'host';
+const hostScope = 'global';
 const initialState = {
   globalLanguage: 'en'
 };
@@ -629,13 +430,8 @@ const hostReducer = (state = initialState, action) => {
 };
 
 const staticReducers = {
-  host: hostReducer
+  [hostScope]: hostReducer
 };
-/**
- * Cf. redux docs:
- * https://redux.js.org/recipes/code-splitting/#defining-an-injectreducer-function
- */
-
 function configureStore() {
   const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : redux__WEBPACK_IMPORTED_MODULE_0__.compose;
   const enhancer = composeEnhancers();
@@ -643,11 +439,12 @@ function configureStore() {
   store.asyncReducers = {}; // Code for extending the store to allow injection of reducers from MFEs
 
   store.injectReducers = reducers => {
-    reducers.map(({
-      key,
+    reducers.forEach(({
+      scope,
       reducer
     }) => {
-      store.asyncReducers[key] = reducer;
+      console.log('injecting reducer ', scope, ' into the store');
+      store.asyncReducers[scope] = reducer;
     });
     store.replaceReducer(createReducer(store.asyncReducers));
   };

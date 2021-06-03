@@ -26,8 +26,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const {
-  getGlobalLanguage,
-  getGlobalCount
+  getGlobalLanguage
 } = _reducer__WEBPACK_IMPORTED_MODULE_2__.selectors;
 const {
   updateGlobalCount
@@ -36,7 +35,6 @@ const {
 const MFE3 = () => {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   const globalLanguage = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getGlobalLanguage);
-  const globalCount = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(getGlobalCount);
 
   const onGlobalIncrement = () => dispatch(updateGlobalCount(1));
 
@@ -47,12 +45,14 @@ const MFE3 = () => {
       marginTop: '10px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_3__.default, null, _constants_js__WEBPACK_IMPORTED_MODULE_4__.default[globalLanguage]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Counter_index_jsx__WEBPACK_IMPORTED_MODULE_5__.default, {
-    title: "Dispatch Global Counter Actions and Display Global Counter",
-    count: globalCount,
+    title: "Dispatch Global Counter Actions",
     onIncrement: onGlobalIncrement,
     onDecrement: onGlobalDecrement,
     themeColor: "blue"
-  }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Exposes two endpoints (via webpack 5 module federation): ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "reducer"), " and ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "MFE3"), ".  These are imported by the host app."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "The ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "reducer"), " endpoint provides access to the MFE reducer (via default export) as well a the scope name to be used in the store (via the ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "scope"), " constant)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "The ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "MFE3"), " endpoint provides access to the MFE react component itself.  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("b", null, "NOTE:"), " the exported react component ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("b", null, "MUST NOT"), " be wrapped in a redux ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "Provider"), " as this would result in a nested store when it is imported into the host which can lead to errors in reading or updating the store"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Stores ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "globalLanguage"), " in it's local store (scoped to ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "mfe3"), ") for updating display of the greeting"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "MFE3 reducer is subscribed to actions of type ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "GLOBAL/SELECT_LANGUAGE"), " to update the mfe3 scoped store"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "MFE3 dispatches actions of type ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "GLOBAL/UPDATE_COUNT"), " when the '+' and '-' buttons are clicked with ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "1"), " and ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "-1"), " as payloads respectively"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("b", null, "Note:"), " this component does not subscribe to the action (", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "GLOBAL/UPDATE_COUNT"), ") that it dispatches"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("b", null, "Note:"), " to properly display this MFE as a stand alone app it must be provided with its own store.  In this case the root url for the app (", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "http://localhost:3004",
+    target: "_blank"
+  }, "http://localhost:3004"), ") loads MFE1 wrapped in a redux ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "Provider"), " (found in ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("code", null, "src/bootstrap.js"), ")")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MFE3);
@@ -113,7 +113,6 @@ __webpack_require__.r(__webpack_exports__);
 
 const Counter = ({
   title,
-  count,
   onIncrement,
   onDecrement,
   themeColor
@@ -123,7 +122,7 @@ const Counter = ({
   }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_2__.CounterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_2__.CounterButton, {
     onClick: () => onIncrement(),
     themeColor: themeColor
-  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_2__.CounterCount, null, count), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_2__.CounterButton, {
+  }, "+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled_jsx__WEBPACK_IMPORTED_MODULE_2__.CounterButton, {
     onClick: () => onDecrement(),
     themeColor: themeColor
   }, "-")));
@@ -131,14 +130,12 @@ const Counter = ({
 
 Counter.propTypes = {
   title: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string),
-  count: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number),
   onIncrement: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func),
   onDecrement: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func),
   themeColor: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)
 };
 Counter.defaultProps = {
   title: '',
-  count: 0,
   onIncrement: () => console.log('Increment Count'),
   onDecrement: () => console.log('Decrement Count'),
   themeColor: 'blue'
@@ -176,6 +173,9 @@ const CounterButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().
 }) => themeColor};
   border: solid 1px gainsboro;
   border-radius: 8px;
+  &:first-of-type {
+    margin-right: 32px;
+  }
 `;
 const CounterContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().div)`
   display: flex;
@@ -235,7 +235,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "mfeScope": () => (/* binding */ mfeScope),
+/* harmony export */   "scope": () => (/* binding */ scope),
 /* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "selectors": () => (/* binding */ selectors),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -243,10 +243,9 @@ __webpack_require__.r(__webpack_exports__);
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 const initialState = {
-  globalLanguage: 'en',
-  globalCount: 0
+  globalLanguage: 'en'
 };
-const mfeScope = 'mfe3';
+const scope = 'mfe3';
 const actions = {
   updateGlobalCount: byValue => ({
     type: UPDATE_GLOBAL_COUNT,
@@ -261,19 +260,13 @@ const reducer = (state = initialState, action) => {
         globalLanguage: action.payload
       };
 
-    case UPDATE_GLOBAL_COUNT:
-      return { ...state,
-        globalCount: state.globalCount + action.payload
-      };
-
     default:
       return state;
   }
 };
 
 const selectors = {
-  getGlobalCount: state => state[mfeScope].globalCount,
-  getGlobalLanguage: state => state[mfeScope].globalLanguage
+  getGlobalLanguage: state => state[scope].globalLanguage
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);
 

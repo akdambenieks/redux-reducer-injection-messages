@@ -1,7 +1,7 @@
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 
-export const mfeScope = 'mfe1';
+export const scope = 'mfe1';
 
 const initialState = {
   globalLanguage: 'en',
@@ -28,8 +28,8 @@ const reducer = (state = initialState, action) => {
 const actions = {}
 
 const selectors = {
-  getGlobalLanguage: (state) => state[mfeScope] ? state[mfeScope].globalLanguage : initialState.globalLanguage,
-  getGlobalCount: (state) => state[mfeScope] ? state[mfeScope].globalCount : initialState.globalCount,
+  getGlobalLanguage: (state) => state[scope].globalLanguage,
+  getGlobalCount: (state) => state[scope].globalCount,
 }
 
 export { selectors, actions };

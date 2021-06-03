@@ -32,15 +32,12 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: 'mfe2',
-      // library: { type: "var", name: "mfe2" },
       filename: 'mfe2.js',
       exposes: {
         './MFE2': './src/MFE2',
         './reducer': './src/reducer',
       },
-      remotes: {
-        host: 'host@http://localhost:3001/host.js'
-      },
+      remotes: {},
       shared: {
         ...deps,
         react: {

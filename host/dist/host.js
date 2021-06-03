@@ -11,7 +11,7 @@ var host;
 
 var moduleMap = {
 	"./Counter": () => {
-		return Promise.all([__webpack_require__.e("webpack_sharing_consume_default_react_react-webpack_sharing_consume_default_styled-components-7d97ef"), __webpack_require__.e("src_components_Counter_index_jsx")]).then(() => (() => ((__webpack_require__(/*! ./src/components/Counter/index */ "./src/components/Counter/index.jsx")))));
+		var e = new Error("Cannot find module './src/components/Counter/index'"); e.code = 'MODULE_NOT_FOUND'; throw e;
 	}
 };
 var get = (module, getScope) => {
@@ -431,9 +431,7 @@ __webpack_require__.d(exports, {
 /******/ 			"webpack/sharing/consume/default/react-dom/react-dom?e4e4": () => (loadSingletonVersionCheckFallback("default", "react-dom", [1,16,14,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-dom_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react-_76b1")]).then(() => (() => (__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"))))))),
 /******/ 			"webpack/sharing/consume/default/react/react?15a2": () => (loadSingletonVersionCheckFallback("default", "react", [0,15], () => (__webpack_require__.e("vendors-node_modules_react_index_js").then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js"))))))),
 /******/ 			"webpack/sharing/consume/default/react/react?aa1c": () => (loadSingletonVersionCheckFallback("default", "react", [,[1,17,0,0],[1,16,0,0],[1,15,0,0],[2,0,14,0],1,1,1], () => (__webpack_require__.e("vendors-node_modules_react_index_js").then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js"))))))),
-/******/ 			"webpack/sharing/consume/default/react/react?7646": () => (loadSingletonVersionCheckFallback("default", "react", [,[4,16,8,0],[0],2], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react_index_js"), __webpack_require__.e("node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_320c-_a15c1")]).then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js"))))))),
-/******/ 			"webpack/sharing/consume/default/react/react?2849": () => (loadSingletonVersionCheckFallback("default", "react", [1,16,13,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react_index_js"), __webpack_require__.e("node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_320c-_a15c1")]).then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js"))))))),
-/******/ 			"webpack/sharing/consume/default/styled-components/styled-components": () => (loadSingletonVersionCheckFallback("default", "styled-components", [1,5,3,0], () => (Promise.all([__webpack_require__.e("vendors-node_modules_styled-components_dist_styled-components_browser_esm_js"), __webpack_require__.e("webpack_sharing_consume_default_react_react-_7646")]).then(() => (() => (__webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js")))))))
+/******/ 			"webpack/sharing/consume/default/react/react?7646": () => (loadSingletonVersionCheckFallback("default", "react", [,[4,16,8,0],[0],2], () => (Promise.all([__webpack_require__.e("vendors-node_modules_react_index_js"), __webpack_require__.e("node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js-_320c-_a15c1")]).then(() => (() => (__webpack_require__(/*! react */ "./node_modules/react/index.js")))))))
 /******/ 		};
 /******/ 		// no consumes in initial chunks
 /******/ 		var chunkMapping = {
@@ -450,10 +448,6 @@ __webpack_require__.d(exports, {
 /******/ 			],
 /******/ 			"webpack_sharing_consume_default_react_react-_7646": [
 /******/ 				"webpack/sharing/consume/default/react/react?7646"
-/******/ 			],
-/******/ 			"webpack_sharing_consume_default_react_react-webpack_sharing_consume_default_styled-components-7d97ef": [
-/******/ 				"webpack/sharing/consume/default/react/react?2849",
-/******/ 				"webpack/sharing/consume/default/styled-components/styled-components"
 /******/ 			]
 /******/ 		};
 /******/ 		__webpack_require__.f.consumes = (chunkId, promises) => {
@@ -505,7 +499,7 @@ __webpack_require__.d(exports, {
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(!/^webpack_sharing_consume_default_react(_react\-(_76(46|b1)|webpack_sharing_consume_default_(react_react|styled\-components\-7d97ef))|\-dom_react\-dom\-webpack_sharing_consume_default_react_react)$/.test(chunkId)) {
+/******/ 						if(!/^webpack_sharing_consume_default_react(_react\-(_76(46|b1)|webpack_sharing_consume_default_react_react)|\-dom_react\-dom\-webpack_sharing_consume_default_react_react)$/.test(chunkId)) {
 /******/ 							// setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);

@@ -9,14 +9,14 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "mfeScope": () => (/* binding */ mfeScope),
+/* harmony export */   "scope": () => (/* binding */ scope),
 /* harmony export */   "selectors": () => (/* binding */ selectors),
 /* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
-const mfeScope = 'mfe1';
+const scope = 'mfe1';
 const initialState = {
   globalLanguage: 'en',
   globalCount: 0
@@ -41,8 +41,8 @@ const reducer = (state = initialState, action) => {
 
 const actions = {};
 const selectors = {
-  getGlobalLanguage: state => state[mfeScope] ? state[mfeScope].globalLanguage : initialState.globalLanguage,
-  getGlobalCount: state => state[mfeScope] ? state[mfeScope].globalCount : initialState.globalCount
+  getGlobalLanguage: state => state[scope].globalLanguage,
+  getGlobalCount: state => state[scope].globalCount
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);

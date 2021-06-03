@@ -9,6 +9,9 @@ export const CounterButton = styled.button`
   color: ${({ themeColor }) => themeColor};
   border: solid 1px gainsboro;
   border-radius: 8px;
+  &:first-of-type {
+    margin-right: 32px;
+  }
 `
 
 export const CounterContainer = styled.div`

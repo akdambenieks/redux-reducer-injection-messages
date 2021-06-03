@@ -3,26 +3,17 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import config from './route-config';
-// Note: no lazt loading of reducers since they need to be present from the outset
-import mfe1reducer from 'mfe1/reducer';
-import mfe2reducer from 'mfe2/reducer';
-import mfe3reducer from 'mfe3/reducer';
+// Note: no lazy loading of reducers since they need to be present from the outset
+import mfe1reducer, {scope as mfe1Scope } from 'mfe1/reducer';
+import mfe2reducer, {scope as mfe2Scope } from 'mfe2/reducer';
+import mfe3reducer, {scope as mfe3Scope } from 'mfe3/reducer';
 
 const Routes = ({ store }) => {
   const mfeReducerArray = [
-    {
-      key: 'mfe1',
-      reducer: mfe1reducer
-    },
-    {
-      key: 'mfe2',
-      reducer: mfe2reducer
-    },
-    {
-      key: 'mfe3',
-      reducer: mfe3reducer
-    }
-  ]
+    { scope: mfe1Scope, reducer: mfe1reducer },
+    { scope: mfe2Scope, reducer: mfe2reducer },
+    { scope: mfe3Scope, reducer: mfe3reducer },
+  ];
   store.injectReducers(mfeReducerArray);
   const elements = config.map((route) => <Route key={route.path} {...route} />);
   return (

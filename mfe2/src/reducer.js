@@ -6,7 +6,7 @@ const initialState = {
   globalLanguage: 'en',
 };
 
-export const mfeScope = 'mfe2';
+export const scope = 'mfe2';
 
 export const actions = {};
 
@@ -32,8 +32,8 @@ const reducer = (state = initialState, action) => {
 };
 
 export const selectors = {
-  getGlobalLanguage: (state) => state[mfeScope].globalLanguage,
-  getActionLog: (state) => state[mfeScope].actionLogForCount
+  getGlobalLanguage: (state) => state[scope].globalLanguage,
+  getActionLog: (state) => state[scope].actionLogForCount
 }
 
 export default reducer;

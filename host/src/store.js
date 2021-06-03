@@ -4,7 +4,7 @@ import { combineReducers, createStore, compose } from 'redux';
 export const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
 const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
 
-const hostScope = 'host';
+const hostScope = 'global';
 
 const initialState = {
   globalLanguage: 'en',
@@ -25,13 +25,9 @@ const hostReducer = (state = initialState, action) => {
 };
 
 const staticReducers = {
-  host: hostReducer,
+  [hostScope]: hostReducer,
 };
 
-/**
- * Cf. redux docs:
- * https://redux.js.org/recipes/code-splitting/#defining-an-injectreducer-function
- */
 export default function configureStore() {
   const composeEnhancers =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -45,9 +41,10 @@ export default function configureStore() {
 
   // Code for extending the store to allow injection of reducers from MFEs
   store.injectReducers = (reducers) => {
-    reducers.map(({key, reducer}) => {
-      store.asyncReducers[key] = reducer;
-    })
+    reducers.forEach(({scope, reducer}) => {
+      console.log('injecting reducer ', scope, ' into the store');
+      store.asyncReducers[scope] = reducer;
+    });
     store.replaceReducer(createReducer(store.asyncReducers));
   };
 

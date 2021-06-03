@@ -37,11 +37,8 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: 'host',
-      // library: { type: 'var', name: 'host' },
       filename: 'host.js',
-      exposes: {
-        './Counter': './src/components/Counter/index',
-      },
+      exposes: {},
       remotes: {
         mfe1: 'mfe1@http://localhost:3002/mfe1.js',
         mfe2: 'mfe2@http://localhost:3003/mfe2.js',

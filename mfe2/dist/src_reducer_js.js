@@ -9,7 +9,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "mfeScope": () => (/* binding */ mfeScope),
+/* harmony export */   "scope": () => (/* binding */ scope),
 /* harmony export */   "actions": () => (/* binding */ actions),
 /* harmony export */   "selectors": () => (/* binding */ selectors),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -20,7 +20,7 @@ const initialState = {
   actionLogForCount: [],
   globalLanguage: 'en'
 };
-const mfeScope = 'mfe2';
+const scope = 'mfe2';
 const actions = {};
 
 const reducer = (state = initialState, action) => {
@@ -48,8 +48,8 @@ const reducer = (state = initialState, action) => {
 };
 
 const selectors = {
-  getGlobalLanguage: state => state[mfeScope].globalLanguage,
-  getActionLog: state => state[mfeScope].actionLogForCount
+  getGlobalLanguage: state => state[scope].globalLanguage,
+  getActionLog: state => state[scope].actionLogForCount
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);
 
