@@ -171,8 +171,14 @@ const CounterButton = (styled_components__WEBPACK_IMPORTED_MODULE_0___default().
   color: ${({
   themeColor
 }) => themeColor};
-  border: solid 1px gainsboro;
+  border: solid 2px gainsboro;
   border-radius: 8px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    color: gainsboro;
+  }
   &:first-of-type {
     margin-right: 32px;
   }
