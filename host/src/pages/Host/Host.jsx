@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectors } from '../../store'
+import { selectors } from '../../globalSlice';
 import StyledTitle from './styled';
 import GREETING from './constants';
 
-const { getLanguage } = selectors;
+const { getGlobalLanguage } = selectors;
 
 export default () => {
-  const language = useSelector(getLanguage);
+  const language = useSelector(getGlobalLanguage);
   return (
     <>
       <StyledTitle>{GREETING[language]}</StyledTitle>

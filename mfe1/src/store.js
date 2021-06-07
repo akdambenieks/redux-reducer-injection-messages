@@ -1,6 +1,8 @@
-import { createStore, combineReducers } from 'redux';
-import mfe1 from './reducer';
+import { configureStore } from '@reduxjs/toolkit'
+import mfe1 from './mfe1slice.js'
 
-export default createStore(combineReducers({
-  mfe1
-}));
+export default configureStore({
+  reducer: {
+    mfe1
+  }
+});

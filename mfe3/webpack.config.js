@@ -35,7 +35,7 @@ module.exports = {
       filename: 'mfe3.js',
       exposes: {
         './MFE3': './src/MFE3',
-        './reducer': './src/reducer',
+        './reducer': './src/mfe3slice',
       },
       remotes: {},
       shared: {

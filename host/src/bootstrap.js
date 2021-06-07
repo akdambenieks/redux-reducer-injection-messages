@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history';
 import Header from './components/Header';
 import { Routes } from './pages';
 
-import { store } from './store';
+import store from './store';
 
 const history = createBrowserHistory();
 
@@ -15,7 +15,7 @@ const App = () => {
     <Provider store={store}>
       <Router history={history}>
         <Header />
-        <Routes store={store}/>
+        <Routes />
       </Router>
     </Provider>
   );

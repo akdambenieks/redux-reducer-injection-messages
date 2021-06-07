@@ -32,12 +32,10 @@ const history = (0,history__WEBPACK_IMPORTED_MODULE_7__.createBrowserHistory)();
 
 const App = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__.Provider, {
-    store: _store__WEBPACK_IMPORTED_MODULE_6__.store
+    store: _store__WEBPACK_IMPORTED_MODULE_6__.default
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Router, {
     history: history
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Header__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_pages__WEBPACK_IMPORTED_MODULE_5__.Routes, {
-    store: _store__WEBPACK_IMPORTED_MODULE_6__.store
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_Header__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_pages__WEBPACK_IMPORTED_MODULE_5__.Routes, null)));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default().render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, null), document.getElementById('root'));
@@ -126,7 +124,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "webpack/sharing/consume/default/react-redux/react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store */ "./src/store.js");
+/* harmony import */ var _globalSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../globalSlice */ "./src/globalSlice.js");
 /* harmony import */ var _styled__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styled */ "./src/components/LanguageSelector/styled.jsx");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants */ "./src/components/LanguageSelector/constants.js");
 
@@ -135,17 +133,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const {
-  getLanguage
-} = _store__WEBPACK_IMPORTED_MODULE_2__.selectors;
+  getGlobalLanguage
+} = _globalSlice__WEBPACK_IMPORTED_MODULE_2__.selectors;
 const {
-  selectLanguage
-} = _store__WEBPACK_IMPORTED_MODULE_2__.actions;
+  selectGlobalLanguage
+} = _globalSlice__WEBPACK_IMPORTED_MODULE_2__.actions;
 
 const LanguageSelector = () => {
   const dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getLanguage(state));
+  const language = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(state => getGlobalLanguage(state));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.SelectorContainer, null, _constants__WEBPACK_IMPORTED_MODULE_4__.LANGUAGE_OPTIONS.map(option => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_styled__WEBPACK_IMPORTED_MODULE_3__.StyledButton, {
-    onClick: e => dispatch(selectLanguage(e.currentTarget.id)),
+    onClick: e => dispatch(selectGlobalLanguage(e.currentTarget.id)),
     id: option,
     key: option,
     className: language === option ? 'selected' : '',
@@ -273,6 +271,57 @@ const NavigationContainer = (styled_components__WEBPACK_IMPORTED_MODULE_0___defa
 
 /***/ }),
 
+/***/ "./src/globalSlice.js":
+/*!****************************!*\
+  !*** ./src/globalSlice.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "scope": () => (/* binding */ scope),
+/* harmony export */   "globalSlice": () => (/* binding */ globalSlice),
+/* harmony export */   "selectors": () => (/* binding */ selectors),
+/* harmony export */   "actions": () => (/* binding */ actions),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "webpack/sharing/consume/default/@reduxjs/toolkit/@reduxjs/toolkit");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
+
+const scope = 'global';
+const initialState = {
+  globalLanguage: 'en'
+}; //globally scoped actions must be created separately from mfe scoped actions using createAction
+
+const globalActions = {
+  selectGlobalLanguage: (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createAction)('GLOBAL/SELECT_LANGUAGE')
+};
+const globalSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+  name: scope,
+  initialState,
+  reducers: {},
+  // global reducers are passed using a builder function via the extraReducers key
+  extraReducers: builder => {
+    builder.addCase(globalActions.selectGlobalLanguage, (state, action) => {
+      state.globalLanguage = action.payload;
+    }).addDefaultCase(state => {
+      state;
+    });
+  }
+});
+const selectors = {
+  getGlobalLanguage: state => state[scope].globalLanguage
+}; // global actions are not necessarily dispatched from the MFE, the MFE may simply subscribe to them
+// The actions are included here so they can be accessed for the component locally via the bootstrap vesrions for local development.
+
+const actions = { ...globalSlice.actions,
+  ...globalActions
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (globalSlice.reducer);
+
+/***/ }),
+
 /***/ "./src/pages/index.js":
 /*!****************************!*\
   !*** ./src/pages/index.js ***!
@@ -306,37 +355,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "webpack/sharing/consume/default/react-router-dom/react-router-dom");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_router_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _route_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./route-config */ "./src/pages/route-config.js");
-/* harmony import */ var mfe1_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mfe1/reducer */ "webpack/container/remote/mfe1/reducer");
-/* harmony import */ var mfe1_reducer__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mfe1_reducer__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var mfe2_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! mfe2/reducer */ "webpack/container/remote/mfe2/reducer");
-/* harmony import */ var mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(mfe2_reducer__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var mfe3_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! mfe3/reducer */ "webpack/container/remote/mfe3/reducer");
-/* harmony import */ var mfe3_reducer__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(mfe3_reducer__WEBPACK_IMPORTED_MODULE_5__);
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /* eslint-disable react/jsx-props-no-spreading */
 
 
- // Note: no lazy loading of reducers since they need to be present from the outset
 
 
-
-
-
-const Routes = ({
-  store
-}) => {
-  const mfeReducerArray = [{
-    scope: mfe1_reducer__WEBPACK_IMPORTED_MODULE_3__.scope,
-    reducer: (mfe1_reducer__WEBPACK_IMPORTED_MODULE_3___default())
-  }, {
-    scope: mfe2_reducer__WEBPACK_IMPORTED_MODULE_4__.scope,
-    reducer: (mfe2_reducer__WEBPACK_IMPORTED_MODULE_4___default())
-  }, {
-    scope: mfe3_reducer__WEBPACK_IMPORTED_MODULE_5__.scope,
-    reducer: (mfe3_reducer__WEBPACK_IMPORTED_MODULE_5___default())
-  }];
-  store.injectReducers(mfeReducerArray);
+const Routes = () => {
   const elements = _route_config__WEBPACK_IMPORTED_MODULE_2__.default.map(route => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Route, _extends({
     key: route.path
   }, route)));
@@ -396,82 +422,31 @@ const MFE3 = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.lazy)(() => __we
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "SELECT_GLOBAL_LANGUAGE": () => (/* binding */ SELECT_GLOBAL_LANGUAGE),
-/* harmony export */   "default": () => (/* binding */ configureStore),
-/* harmony export */   "store": () => (/* binding */ store),
-/* harmony export */   "actions": () => (/* binding */ actions),
-/* harmony export */   "selectors": () => (/* binding */ selectors)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "webpack/sharing/consume/default/redux/redux");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
- // global actions are namespaced with the 'GLOBAL/' prefix to expose them to other MFE's
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "webpack/sharing/consume/default/@reduxjs/toolkit/@reduxjs/toolkit");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _globalSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./globalSlice */ "./src/globalSlice.js");
+/* harmony import */ var mfe1_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mfe1/reducer */ "webpack/container/remote/mfe1/reducer");
+/* harmony import */ var mfe1_reducer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mfe1_reducer__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var mfe2_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mfe2/reducer */ "webpack/container/remote/mfe2/reducer");
+/* harmony import */ var mfe2_reducer__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(mfe2_reducer__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var mfe3_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! mfe3/reducer */ "webpack/container/remote/mfe3/reducer");
+/* harmony import */ var mfe3_reducer__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(mfe3_reducer__WEBPACK_IMPORTED_MODULE_4__);
 
-const SELECT_GLOBAL_LANGUAGE = 'GLOBAL/SELECT_LANGUAGE';
-const UPDATE_GLOBAL_COUNT = 'GLOBAL/UPDATE_COUNT';
-const hostScope = 'global';
-const initialState = {
-  globalLanguage: 'en'
-};
+ // Note: no lazy loading of reducers since they need to be present from the outset
 
-const hostReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case SELECT_GLOBAL_LANGUAGE:
-      {
-        return { ...state,
-          globalLanguage: action.payload
-        };
-      }
 
-    default:
-      {
-        return state;
-      }
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.configureStore)({
+  reducer: {
+    global: _globalSlice__WEBPACK_IMPORTED_MODULE_1__.default,
+    [mfe1_reducer__WEBPACK_IMPORTED_MODULE_2__.scope]: (mfe1_reducer__WEBPACK_IMPORTED_MODULE_2___default()),
+    [mfe2_reducer__WEBPACK_IMPORTED_MODULE_3__.scope]: (mfe2_reducer__WEBPACK_IMPORTED_MODULE_3___default()),
+    [mfe3_reducer__WEBPACK_IMPORTED_MODULE_4__.scope]: (mfe3_reducer__WEBPACK_IMPORTED_MODULE_4___default())
   }
-};
-
-const staticReducers = {
-  [hostScope]: hostReducer
-};
-function configureStore() {
-  const composeEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : redux__WEBPACK_IMPORTED_MODULE_0__.compose;
-  const enhancer = composeEnhancers();
-  const store = (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(createReducer(), enhancer);
-  store.asyncReducers = {}; // Code for extending the store to allow injection of reducers from MFEs
-
-  store.injectReducers = reducers => {
-    reducers.forEach(({
-      scope,
-      reducer
-    }) => {
-      console.log('injecting reducer ', scope, ' into the store');
-      store.asyncReducers[scope] = reducer;
-    });
-    store.replaceReducer(createReducer(store.asyncReducers));
-  };
-
-  return store;
-}
-
-function createReducer(asyncReducers) {
-  return (0,redux__WEBPACK_IMPORTED_MODULE_0__.combineReducers)({ ...staticReducers,
-    ...asyncReducers
-  });
-}
-
-const store = configureStore();
-const actions = {
-  selectLanguage: language => ({
-    type: SELECT_GLOBAL_LANGUAGE,
-    payload: language
-  }),
-  updateGlobalCount: byValue => ({
-    type: UPDATE_GLOBAL_COUNT,
-    payload: byValue
-  })
-};
-const selectors = {
-  getLanguage: state => state[hostScope].globalLanguage
-};
+}));
 
 /***/ })
 
