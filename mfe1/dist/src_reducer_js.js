@@ -29,12 +29,7 @@ const globalActions = {
 const mfe1Slice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
   name: scope,
   initialState,
-  reducers: {
-    test: (state, action) => {
-      console.log(action.type);
-      state;
-    }
-  },
+  reducers: {},
   // global reducers are passed using a builder function via the extraReducers key
   extraReducers: builder => {
     builder.addCase(globalActions.updateGlobalCount, (state, action) => {
@@ -49,7 +44,8 @@ const mfe1Slice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)(
 const selectors = {
   getGlobalLanguage: state => state[scope].globalLanguage,
   getGlobalCount: state => state[scope].globalCount
-}; // global actions are not necessarily be disptched from the MFE, the MFE may simply subscribe to them
+}; // global actions are not necessarily dispatched from the MFE, the MFE may simply subscribe to them
+// The actions are included here so they can be accessed for the component locally via the bootstrap vesrions for local development.
 
 const actions = { ...mfe1Slice.actions,
   ...globalActions

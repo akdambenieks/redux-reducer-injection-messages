@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectors } from './reducer';
+import { selectors } from './mfe2slice';
 import StyledTitle from './styled.jsx';
 import GREETING from './constants.js';
 

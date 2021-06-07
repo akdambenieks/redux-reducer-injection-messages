@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions, selectors } from './reducer';
+import { actions, selectors } from './mfe3slice';
 import StyledTitle from './styled.jsx';
 import GREETING from './constants.js';
 import Counter from './components/Counter/index.jsx';

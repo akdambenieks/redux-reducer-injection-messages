@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { actions } from './mfe1slice.js';
+import { actions } from './mfe2slice.js';
 
 const { updateGlobalCount, selectGlobalLanguage } = actions;
 
