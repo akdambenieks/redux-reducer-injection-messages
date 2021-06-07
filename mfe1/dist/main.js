@@ -7,7 +7,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_redux_es_redux_js"), __webpack_require__.e("webpack_sharing_consume_default_react-redux_react-redux-webpack_sharing_consume_default_react-3f3fae"), __webpack_require__.e("src_bootstrap_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./bootstrap */ "./src/bootstrap.js"));
+Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_reduxjs_toolkit_dist_redux-toolkit_esm_js"), __webpack_require__.e("webpack_sharing_consume_default_react-redux_react-redux-webpack_sharing_consume_default_react-3f3fae"), __webpack_require__.e("src_bootstrap_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./bootstrap */ "./src/bootstrap.js"));
 
 /***/ })
 

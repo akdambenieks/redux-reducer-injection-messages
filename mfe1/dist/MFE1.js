@@ -11,10 +11,10 @@ var mfe1;
 
 var moduleMap = {
 	"./MFE1": () => {
-		return Promise.all([__webpack_require__.e("webpack_sharing_consume_default_react-redux_react-redux-webpack_sharing_consume_default_react-3f3fae"), __webpack_require__.e("src_MFE1_js")]).then(() => (() => ((__webpack_require__(/*! ./src/MFE1 */ "./src/MFE1.js")))));
+		return Promise.all([__webpack_require__.e("vendors-node_modules_reduxjs_toolkit_dist_redux-toolkit_esm_js"), __webpack_require__.e("webpack_sharing_consume_default_react-redux_react-redux-webpack_sharing_consume_default_react-3f3fae"), __webpack_require__.e("src_MFE1_js")]).then(() => (() => ((__webpack_require__(/*! ./src/MFE1 */ "./src/MFE1.js")))));
 	},
 	"./reducer": () => {
-		return __webpack_require__.e("src_reducer_js").then(() => (() => ((__webpack_require__(/*! ./src/reducer */ "./src/reducer.js")))));
+		return Promise.all([__webpack_require__.e("vendors-node_modules_reduxjs_toolkit_dist_redux-toolkit_esm_js"), __webpack_require__.e("src_reducer_js")]).then(() => (() => ((__webpack_require__(/*! ./src/reducer */ "./src/reducer.js")))));
 	}
 };
 var get = (module, getScope) => {
