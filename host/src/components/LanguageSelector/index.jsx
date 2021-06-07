@@ -1,21 +1,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectors, actions } from '../../store'
+import { selectors, actions } from '../../globalSlice';
 import { StyledButton, SelectorContainer } from './styled';
 import { LANGUAGE_OPTIONS } from './constants';
 
-const { getLanguage } = selectors;
-const { selectLanguage } = actions;
+const { getGlobalLanguage } = selectors;
+const { selectGlobalLanguage } = actions;
 
 const LanguageSelector = () => {
   const dispatch = useDispatch();
-  const language = useSelector(state => getLanguage(state));
+  const language = useSelector(state => getGlobalLanguage(state));
 
   return (
     <SelectorContainer>
       {LANGUAGE_OPTIONS.map((option) => (
         <StyledButton
-          onClick={e => dispatch(selectLanguage(e.currentTarget.id))}
+          onClick={e => dispatch(selectGlobalLanguage(e.currentTarget.id))}
           id={option}
           key={option}
           className={language === option ? 'selected' : ''}
